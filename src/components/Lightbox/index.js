@@ -41,7 +41,6 @@ const LightboxGallery = ({ images, closeCallback, startIndex }) => {
 				}
 			}
 		};
-
 		document.addEventListener("keyup", handleKey);
 
 		return () => {
@@ -73,15 +72,16 @@ const LightboxGallery = ({ images, closeCallback, startIndex }) => {
 					/>
 				)}
 				{/* <FontAwesomeIcon className="arrowLeft arrow" icon={faCaretLeft} size="4x" color="white" onClick={(event) => {event.stopPropagation(); gotoPrevious();}}/> */}
-				{IndexState < (images.length - 1) && (<FontAwesomeIcon
-					className="arrowRight arrow"
-					icon={faCaretRight}
-					size="4x"
-					color="white"
-					onClick={(event) => {
-						event.stopPropagation();
-						gotoNext();
-					}}
+				{IndexState < images.length - 1 && (
+					<FontAwesomeIcon
+						className="arrowRight arrow"
+						icon={faCaretRight}
+						size="4x"
+						color="white"
+						onClick={(event) => {
+							event.stopPropagation();
+							gotoNext();
+						}}
 				/>)}
 				{transition.map(({ item, props, key }) => (
 					<LightboxImg
