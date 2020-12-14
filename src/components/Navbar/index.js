@@ -1,9 +1,9 @@
 import React from "react";
-import { Route, Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import CartButton from "../CartButton";
 import * as S from "./style.js";
 
-const Nav = (props) => {
+const Nav = () => {
 	const location = useLocation();
 
 	return (

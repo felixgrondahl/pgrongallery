@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FreeFloating, Header, FloatingPanel } from '../../styles/generic/Containers';
+import { FreeFloating, Header } from '../../styles/generic/Containers';
 // import HeaderBackground from '../../assets/images/Home/HomeHeaderBkg.png';
 // import HeaderBackgroundOutline from '../../assets/images/Home/HomeHeaderBkg-outline.png';
 // import BottomImage from '../../assets/images/Home/closedeyes-cut-new.png';

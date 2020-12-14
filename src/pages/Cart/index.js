@@ -20,6 +20,7 @@ const Cart = (props) => {
 	const [products, setProducts] = useState(); //initialize this with localstorage cart
 	// const [updateCart, setUpdateCart] = useState(true);
 
+	
 	useEffect(() => {
 		params.get("cart") && updateCart();
 		// setUpdateCart(false);

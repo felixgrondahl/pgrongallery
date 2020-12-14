@@ -5,27 +5,13 @@ import { useTransition } from "react-spring";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretRight, faCaretLeft } from "@fortawesome/free-solid-svg-icons";
 import CloseButton from "../CloseButton";
+import PropTypes from "prop-types";
+import { Clamp } from "../../utils/clamp";
 
-const LightboxGallery = ({ images, closeCallback, startIndex }) => {
+const LightboxGallery = ({ images, closeCallback, startIndex = 0 }) => {
 	const isOpen = useRef(true);
-	const currentImageIndex = useRef(startIndex); //index wont work correctly if I dont use Ref
-	const [IndexState, setIndexState] = useState(startIndex);
-	// console.log(currentImageIndex);
-	// let imageIndex = 0;
-
-	const gotoPrevious = () => {
-		if (currentImageIndex.current > 0) {
-			currentImageIndex.current -= 1;
-			setIndexState(currentImageIndex.current);
-		}
-	};
-
-	const gotoNext = () => {
-		if (currentImageIndex.current + 1 < images.length) {
-			currentImageIndex.current += 1;
-			setIndexState(currentImageIndex.current);
-		}
-	};
+	// const imageIndex = useRef(startIndex); //index wont work correctly if I dont use Ref
+	const [imageIndex, setImageIndex] = useState(startIndex);
 
 	useEffect(() => {
 		const handleKey = (event) => {
@@ -33,11 +19,9 @@ const LightboxGallery = ({ images, closeCallback, startIndex }) => {
 				if (event.key === "Escape") {
 					closeCallback();
 				} else if (event.key === "ArrowRight") {
-					gotoNext();
-					// console.log(currentImageIndex.current);
+					setImageIndex(i => Clamp(i + 1, 0, images.length - 1));
 				} else if (event.key === "ArrowLeft") {
-					gotoPrevious();
-					// console.log(currentImageIndex.current);
+					setImageIndex(i => Clamp(i - 1, 0, images.length - 1));
 				}
 			}
 		};
@@ -47,9 +31,9 @@ const LightboxGallery = ({ images, closeCallback, startIndex }) => {
 			isOpen.current = false;
 			document.removeEventListener("keyup", handleKey);
 		};
-	}, []);
+	}, [closeCallback, images.length]); 
 
-	const transition = useTransition(images[IndexState].url, (item) => item, {
+	const transition = useTransition(images[imageIndex].url, (item) => item, {
 		from: { opacity: 0 },
 		enter: { opacity: 1 },
 		leave: { opacity: 0 },
@@ -59,7 +43,7 @@ const LightboxGallery = ({ images, closeCallback, startIndex }) => {
 		// (isOpen &&
 		<PortalModal modalId="modal_lightbox" onClick={() => closeCallback()}>
 			<LightboxWindow onClick={(event) => event.stopPropagation()}>
-				{IndexState > 0 && (
+				{imageIndex > 0 && (
 					<FontAwesomeIcon
 						className="arrowLeft arrow"
 						icon={faCaretLeft}
@@ -67,12 +51,12 @@ const LightboxGallery = ({ images, closeCallback, startIndex }) => {
 						color="white"
 						onClick={(event) => {
 							event.stopPropagation();
-							gotoPrevious();
+							setImageIndex(i => Clamp(i - 1, 0, images.length - 1));
 						}}
 					/>
 				)}
 				{/* <FontAwesomeIcon className="arrowLeft arrow" icon={faCaretLeft} size="4x" color="white" onClick={(event) => {event.stopPropagation(); gotoPrevious();}}/> */}
-				{IndexState < images.length - 1 && (
+				{imageIndex < images.length - 1 && (
 					<FontAwesomeIcon
 						className="arrowRight arrow"
 						icon={faCaretRight}
@@ -80,9 +64,10 @@ const LightboxGallery = ({ images, closeCallback, startIndex }) => {
 						color="white"
 						onClick={(event) => {
 							event.stopPropagation();
-							gotoNext();
+							setImageIndex(i => Clamp(i + 1, 0, images.length - 1));
 						}}
-				/>)}
+					/>
+				)}
 				{transition.map(({ item, props, key }) => (
 					<LightboxImg
 						style={{ ...props }}
@@ -97,5 +82,11 @@ const LightboxGallery = ({ images, closeCallback, startIndex }) => {
 		</PortalModal>
 	);
 };
+
+LightboxGallery.propTypes = {
+	images: PropTypes.array.isRequired,
+	closeCallback: PropTypes.func.isRequired,
+	startIndex: PropTypes.number
+}
 
 export default LightboxGallery;

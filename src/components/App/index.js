@@ -8,12 +8,7 @@ import Login from "../../pages/Login";
 import Register from "../../pages/Register";
 import Cart from "../../pages/Cart";
 import CubeBackground from "../CubeBackground";
-
-import {
-	Route,
-	Switch,
-	useLocation,
-} from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 import GlobalStyle from "../../styles/global-styles";
 import { ThemeProvider } from "styled-components";
 import { useTransition } from "react-spring";
@@ -38,11 +33,9 @@ function App() {
 
 	useEffect(() => {
 		const waitForCache = async () => {
-			if (!cached) {
 				console.log("CHECKING CACHING!");
 				await CacheData();
 				setCached(true);
-			}
 		};
 		waitForCache();
 	}, []);

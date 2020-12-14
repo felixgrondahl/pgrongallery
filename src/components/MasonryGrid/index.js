@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import { useTransition, config } from "react-spring";
 import useMedia from "../../Hooks/useMedia";
 import useResizeObserver from "../../Hooks/useResizeObserver";
-import { BaseContainer } from "../../styles/generic/Containers";
 import * as S from "./style";
 // import data from '../../TestData/data';
 

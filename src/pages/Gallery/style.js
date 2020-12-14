@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MainModal, Header } from "../../styles/generic/Containers";
+import { Header } from "../../styles/generic/Containers";
 import HeaderBackground from "../../assets/images/Gallery/wings.png";
 
 // export const Header = styled(MainHeaderContainer)`

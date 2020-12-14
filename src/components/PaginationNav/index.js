@@ -1,5 +1,4 @@
 import React from "react";
-import { TextButton } from "../../styles/generic/Button";
 import { faCaretRight, faCaretLeft } from "@fortawesome/free-solid-svg-icons";
 import * as S from "./style";
 
