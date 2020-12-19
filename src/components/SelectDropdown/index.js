@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
-import * as S from './style';
+import React from "react";
+import * as S from "./style";
+import PropTypes from "prop-types";
 
-const SelectDropdown = ({options, onChange}) => {
+const SelectDropdown = ({ options, onChange }) => {
+	return (
+		<S.SelectDropdown
+			onChange={(event) => onChange(event.target.value)}
+			value={options[0]}
+		>
+			{Object.entries(options).map(([, value]) => {
+				return <option key={value}>{value}</option>;
+			})}
+		</S.SelectDropdown>
+	);
+};
 
-    return (
-        <S.SelectDropdown onChange={(event) => onChange(event.target.value)} value={options[0]}>
-            {Object.entries(options).map(([key, value]) => {
-                return (<option key={value}>{value}</option>)
-            })}
-        </S.SelectDropdown>
-    );
+SelectDropdown.propTypes = {
+    options: PropTypes.object,
+    onChange: PropTypes.func
 }
 
 export default SelectDropdown;

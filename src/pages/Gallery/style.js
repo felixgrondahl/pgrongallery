@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Header } from "../../styles/generic/Containers";
 import HeaderBackground from "../../assets/images/Gallery/wings.png";
+import { BaseContainer } from "../../styles/generic/Containers";
 
 // export const Header = styled(MainHeaderContainer)`
 //     /* display: block; */
@@ -43,6 +44,13 @@ export const GalleryHeader = styled(Header)`
     } */
 `;
 
+export const MainWrapper = styled(BaseContainer)`
+	padding: 40px 0px;
+	margin-top: 60px;
+	background-color: white;
+	/* background: linear-gradient(180deg, rgba(0,0,0,1)  0%, rgba(255,255,255,1) 100%); */
+`;
+
 export const GalleryItemWrapper = styled.div`
 	display: grid;
 	justify-content: center;
@@ -52,12 +60,14 @@ export const GalleryItemWrapper = styled.div`
 `;
 
 export const GalleryButtons = styled.div`
-	margin-bottom: 20px;
+	/* margin-bottom: 20px */
 	display: inline-block;
 	position: relative;
 	left: 50%;
 	transform: translateX(-50%);
 	text-align: center;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+	padding-bottom: 40px;
 `;
 
 // export const GalleryItemWindow = styled(MainModal)`

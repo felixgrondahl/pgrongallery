@@ -9,6 +9,9 @@ export const CartButton = styled(FontAwesomeIcon)`
 	transition-property: transform;
 	font-size: 1.6em;
 
+	@media (max-width: 768px) {
+            font-size: 1.3em;
+        }
 	/* &:hover {
 		transform: scale(1.03);
 	}

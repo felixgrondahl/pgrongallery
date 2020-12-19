@@ -6,9 +6,15 @@ import CloseButton from "../../components/CloseButton";
 import { getCachedItem } from "../../utils/request";
 import LightboxGallery from "../../components/Lightbox";
 import { url, AddProductToCart } from "../../utils/products";
+import PropTypes from "prop-types";
 
 const Product = (props) => {
+	// eslint-disable-next-line react/prop-types
 	let params = new URLSearchParams(props.location.search);
+	// eslint-disable-next-line react/prop-types
+	const cached = props.cached;
+	const searchParam = params.get("product");
+	const productId = params.get("productId");
 	const location = useLocation();
 	const history = useHistory();
 	// console.log('called');
@@ -17,16 +23,13 @@ const Product = (props) => {
 	const [showImage, setShowImage] = useState({ show: false, imageIndex: 0 });
 
 	useEffect(() => {
-		// console.log(props.cached);
-		if (params.get("product") && props.cached) {
-			const productId = params.get("productId");
-			// console.log("Getting product Data and showing modal!");
+		if (searchParam && cached) {
 			setProductData(getCachedItem(url, productId));
 			setShowModal(true);
 		} else {
 			setShowModal(false);
 		}
-	}, [params.get("product"), props.cached]);
+	}, [searchParam, cached, productId]);
 
 	const CheckSold = ({ product }) => {
 		if (product.sold) {
@@ -40,9 +43,13 @@ const Product = (props) => {
 		);
 	};
 
-	if (!productData) {
-		return <div>Loading...</div>;
-	}
+	CheckSold.propTypes = {
+		product: PropTypes.object,
+	};
+
+	// if (!productData) {
+	// 	return <div>Loading...</div>;
+	// }
 
 	return (
 		showModal && (
@@ -58,7 +65,7 @@ const Product = (props) => {
 										key={image.url}
 										src={image.url}
 										className={index === 0 ? "main" : "sub"}
-										onClick={(event) =>
+										onClick={() =>
 											setShowImage({ show: true, imageIndex: index })
 										}
 									/>
@@ -74,20 +81,26 @@ const Product = (props) => {
 							</div>
 
 							<div className="description">
-								<p style={{ marginTop: "10px" }}>
-									<span style={{ margin: "0 10px" }}>
-										{productData.productWidth &&
-											`WIDTH ${productData.productWidth}cm`}
-									</span>
-									<span style={{ margin: "0 10px" }}>
-										{productData.productHeight &&
-											`HEIGHT ${productData.productHeight}cm`}
-									</span>
-									<span style={{ margin: "0 10px" }}>
-										{productData.productDepth &&
-											`DEPTH ${productData.productDepth}cm`}
-									</span>
+								{/* <p style={{ marginTop: "10px" }}> */}
+								{/* <span style={{ margin: "0 10px" }}> */}
+								<p>
+									{productData.productWidth &&
+										`WIDTH ${productData.productWidth}cm`}
 								</p>
+								<p>
+									{/* </span> */}
+									{/* <span style={{ margin: "0 10px" }}> */}
+									{productData.productHeight &&
+										`HEIGHT ${productData.productHeight}cm`}
+								</p>
+								{/* </span> */}
+								{/* <span style={{ margin: "0 10px" }}> */}
+								<p>
+									{productData.productDepth &&
+										`DEPTH ${productData.productDepth}cm`}
+								</p>
+								{/* </span> */}
+								{/* </p> */}
 							</div>
 							<div className="info">
 								<p>{productData.price}€</p>
@@ -95,7 +108,8 @@ const Product = (props) => {
 							</div>
 						</S.InfoWrapper>
 					</React.Fragment>
-					<CloseButton dark={true}
+					<CloseButton
+						dark={true}
 						onClick={() => !showImage.show && history.push(location.pathname)}
 					/>
 				</S.ProductWindow>

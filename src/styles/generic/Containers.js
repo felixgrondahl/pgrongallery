@@ -1,5 +1,19 @@
 import styled from "styled-components";
 
+export const MainColumn = styled.div`
+	width: 65vw;
+	/* width: 100%; */
+	/* display: flex; */
+	margin: auto;
+
+	/* justify-content: center; */
+	/* flex-direction: column; */
+
+	@media (max-width: 768px) {
+		width: 90vw;
+	}
+`;
+
 export const BaseContainer = styled.div`
 	display: block;
 	width: 100%;
@@ -58,12 +72,16 @@ export const FloatingBase = styled.div`
 
 export const MainModal = styled(FloatingBase)`
 	width: 80%;
-	height: 95%;
+	height: 98%;
 	box-sizing: border-box;
 	position: fixed;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+
+	@media (max-width: 768px) {
+		width: 95vw;
+	}
 
 	.close {
 		/* cursor: pointer; */
@@ -107,6 +125,11 @@ export const FloatingPanel = styled(FloatingBase)`
 	width: 120%;
 	margin-left: -10%;
 	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+
+	@media (max-width: 768px) {
+		width: 100%;
+		margin-left: 0%;
+	}
 `;
 
 export const GradientField = styled.div`
@@ -122,10 +145,10 @@ export const GradientField = styled.div`
 //     height: 100vh;
 // `;
 
-export const CenteredForm = styled.div`
-	width: 45%;
+export const CenteredForm = styled.form`
+	width: 95%;
 	position: relative;
-	top: 47%;
+	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	text-align: center;

@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import CartButton from "../CartButton";
 import * as S from "./style.js";
+import PropTypes from "prop-types";
 
 const Nav = () => {
 	const location = useLocation();
@@ -12,7 +13,7 @@ const Nav = () => {
 			<S.NavbarContent>
 				<NavItem path="/">Home</NavItem>
 				<NavItem path="/Gallery">Gallery</NavItem>
-				<NavItem path="/About">About</NavItem>
+				{/* <NavItem path="/About">About</NavItem> */}
 				{/* <NavItem path="/Contact">Contact</NavItem> */}
 			</S.NavbarContent>
 
@@ -27,12 +28,17 @@ const Nav = () => {
 	);
 };
 
-const NavItem = (props) => {
+const NavItem = ({path, children}) => {
 	return (
 		<S.NavbarItem>
-			<S.StyledLink to={props.path}>{props.children}</S.StyledLink>
+			<S.StyledLink to={path}>{children}</S.StyledLink>
 		</S.NavbarItem>
 	);
 };
+
+NavItem.propTypes = {
+	path: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+	children: PropTypes.node
+}
 
 export default Nav;

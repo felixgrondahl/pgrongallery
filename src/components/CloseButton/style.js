@@ -7,7 +7,7 @@ export const Close = styled(TextButton)`
 	align-items: center;
 
 	position: absolute;
-	top: 0px;
+	top: -3px;
 	right: 0px;
 	width: 40px;
 	height: 30px;
@@ -16,5 +16,13 @@ export const Close = styled(TextButton)`
 	text-decoration: none;
 	font-size: 3em;
 	user-select: none;
+	color: rgba(0, 0, 0, 0.6);
+	text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
 	/* text-align: center; */
+
+	@media (max-width: 768px) {
+		top: -7px;
+		right: -5px;
+		color: rgba(0, 0, 0, 0.8);
+	}
 `;

@@ -2,7 +2,9 @@ import styled from 'styled-components';
 
 export const SelectDropdown = styled.select`
     border: none;
-    background-color: #0D0D0D;
+    color: black;
+    /* background-color: white; */
+    text-shadow: none;
     appearance: none;
 
     &:hover {

@@ -2,19 +2,21 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTransition, config } from "react-spring";
 import useMedia from "../../Hooks/useMedia";
-import useResizeObserver from "../../Hooks/useResizeObserver";
+// import useResizeObserver from "../../Hooks/useResizeObserver";
+import useResizeObserver from "use-resize-observer";
 import * as S from "./style";
+import PropTypes from "prop-types";
 // import data from '../../TestData/data';
 
 const MasonryGrid = ({ data }) => {
 	const location = useLocation();
 	const numColumns = useMedia(
-		["(min-width: 1500px)", "(min-width: 1000px)", "(min-width: 500px)"],
-		[4, 3, 2],
+		["(min-width: 1100px)", "(min-width: 768px)"],
+		[4, 2],
 		2
 	);
 
-	const [bind, { width }] = useResizeObserver();
+	const { ref, width = 1, }  = useResizeObserver();
 	const columnWidth = width / numColumns;
 
 	const colHeights = new Array(numColumns).fill(0);
@@ -41,11 +43,11 @@ const MasonryGrid = ({ data }) => {
 
 	const galleryTransition = useTransition(gridItems, item => item.id, {
 		config: { ...config.default },
-		from: (item) => ({
+		from: {
 			// height: 0,
 			transform: `translate3d(0px, 0px, 0px)`,
 			opacity: 0,
-		}),
+		},
 		enter: (item) => ({
 			height: item.height,
 			width: item.width,
@@ -58,16 +60,16 @@ const MasonryGrid = ({ data }) => {
 			transform: `translate3d(${item.xy[0]}px, ${item.xy[1]}px, 0px)`,
 			opacity: 1,
 		}),
-		leave: (item) => ({
+		leave: {
 			transform: `translate3d(0px, 0px, 0px)`,
 			opacity: 0,
-		}),
+		},
 	});
 
 	return (
-		<div
-			ref={bind}
-			style={{ display: "flex", height: `${Math.max(...colHeights)}px` }}
+		<S.Wrapper
+			ref={ref}
+			style={{ height: `${400 * (8/numColumns)}px` }}
 		>
 			<S.Gallery>
 				{galleryTransition.map(({ item, props, key }) => (
@@ -78,13 +80,17 @@ const MasonryGrid = ({ data }) => {
 								search: `?product=true&productId=${item.id}`,
 							}}
 						>
-							<S.Image key={`url(${item.url})`} style={{ backgroundImage: `url(${item.url})` }} />
+							<S.Image key={`url(${item.url})`} src={item.url} />
 						</Link>
 					</S.ImageWrapper>
 				))}
 			</S.Gallery>
-		</div>
+		</S.Wrapper>
 	);
 };
+
+MasonryGrid.propTypes = {
+	data: PropTypes.array
+}
 
 export default MasonryGrid;

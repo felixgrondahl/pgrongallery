@@ -1,18 +1,36 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import { Canvas } from "react-three-fiber";
 import * as THREE from "three";
 import { useSpring, animated } from "react-spring/three";
 import useMouseMovement from "../../Hooks/useMouseMovement";
+import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+import PropTypes from "prop-types";
 
-const Box = ({ mouseRot, position }) => {
+const GetScrollPos = () => {
+	const [scrollY, setScrollY] = useState(0);
+
+	useScrollPosition(({ currPos }) => {
+		setScrollY(currPos.y);
+	});
+
+	return scrollY;
+};
+
+const Box = () => {
+	const mouseMovement = useMouseMovement();
+
 	const { rotation } = useSpring({
-		rotation: mouseRot,
+		rotation: [
+			-GetScrollPos() * 0.00025 + mouseMovement?.y * 0.0015,
+			mouseMovement?.x * 0.0015,
+			0,
+		],
 		from: { rotation: [0, 0, 0] },
 		config: { mass: 7, tension: 15, friction: 30, precision: 0.0001 },
 	});
 
 	return (
-		<animated.mesh position={position} rotation={rotation} scale={[1, 1, 1]}>
+		<animated.mesh rotation={rotation}>
 			<boxBufferGeometry attach="geometry" args={[1.1, 0.6, 1.8]} />
 			<meshPhysicalMaterial
 				attach="material"
@@ -26,9 +44,12 @@ const Box = ({ mouseRot, position }) => {
 	);
 };
 
-const CubeBackground = () => {
-	const { x, y } = useMouseMovement();
+Box.propTypes = {
+	mouseRot: PropTypes.array,
+	position: PropTypes.array,
+};
 
+const CubeBackground = () => {
 	return (
 		<div
 			style={{
@@ -40,7 +61,6 @@ const CubeBackground = () => {
 			}}
 		>
 			<Canvas colorManagement camera={{ fov: 50, position: [0, 0, 0] }}>
-				{/* <ambientLight intensity={1} /> */}
 				<pointLight
 					position={[0, 0.6, 0]}
 					intensity={5}
@@ -56,7 +76,7 @@ const CubeBackground = () => {
 					color={"#A68446"}
 				/> */}
 				<Suspense fallback={null}>
-					<Box position={[0, 0, 0]} mouseRot={[y * 0.002, x * 0.002, 0]} />
+					<Box />
 				</Suspense>
 			</Canvas>
 		</div>

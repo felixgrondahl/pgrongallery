@@ -1,52 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation, useHistory, Link } from "react-router-dom";
 import { MainModal } from "../../styles/generic/Containers";
 import PortalModal from "../../components/Modal/PortalModal/";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { loadStripe } from "@stripe/stripe-js";
 import { RemoveItemFromCart } from "../../utils/products";
 import * as S from "./style";
 import CloseButton from "../../components/CloseButton";
-
-const stripePromise = loadStripe(
-	"pk_test_51HkooREWp5rDDrzPdFDtoQWNCOsWHOyDnaTbS46i3a5Ubgd2WqeKWu2JsAaXKyNeuOYoJvV371gi7ss2V8fnhQDf00hnViajEt"
-);
+import PropTypes from "prop-types";
 
 const Cart = (props) => {
+	// eslint-disable-next-line react/prop-types
 	let params = new URLSearchParams(props.location.search);
+	const searchParam = params.get("cart");
 	const location = useLocation();
 	const history = useHistory();
 	const [products, setProducts] = useState(); //initialize this with localstorage cart
 	// const [updateCart, setUpdateCart] = useState(true);
 
-	
 	useEffect(() => {
-		params.get("cart") && updateCart();
+		searchParam && updateCart();
 		// setUpdateCart(false);
-	}, [params.get("cart")]);
+	}, [searchParam]);
 
 	const updateCart = () => {
 		setProducts(JSON.parse(localStorage.getItem("cart")));
-	};
-
-	const handleCheckout = async (event) => {
-		const stripe = await stripePromise;
-		const { error } = await stripe.redirectToCheckout({
-			lineItems: [
-				{
-					price: "price_1HvhQ0EWp5rDDrzPOhJZp3v1",
-					quantity: 1,
-				},
-				{
-					price: "price_1HqyATEWp5rDDrzP92rEopA0",
-					quantity: 1,
-				},
-			],
-			mode: "payment",
-			successUrl: "https://localhost:3000/success",
-			cancelUrl: "https://localhost:3000/cancel",
-		});
 	};
 
 	const ProductSection = ({ product }) => {
@@ -57,22 +35,26 @@ const Cart = (props) => {
 				<div className="info">
 					<h3 style={{ margin: "0 0 5px 0" }}>{product.title.toUpperCase()}</h3>
 					<p>{product.description}</p>
+				</div>
+				<div className="right">
+					{/* <QuantityInput /> */}
+					<S.Price>{product.price}€</S.Price>
 					<S.ProductButton
 						onClick={() => {
 							RemoveItemFromCart(product.id);
 							updateCart();
 						}}
 					>
-						<FontAwesomeIcon icon={faTrash} style={{ marginRight: "0.7em" }} />
-						REMOVE ITEM
+						<FontAwesomeIcon icon={faTrash} style={{ marginRight: "0.9em" }} />
+						REMOVE
 					</S.ProductButton>
-				</div>
-				<div className="right">
-					{/* <QuantityInput /> */}
-					<S.Price>{product.price}€</S.Price>
 				</div>
 			</S.Product>
 		);
+	};
+
+	ProductSection.propTypes = {
+		product: PropTypes.object,
 	};
 
 	const GetTotal = () => {
@@ -89,32 +71,32 @@ const Cart = (props) => {
 		params.get("cart") && (
 			<PortalModal onClick={() => history.push(location.pathname)}>
 				<MainModal
-					style={{ padding: "30px" }}
+					style={{ padding: "5px", paddingTop: "30px" }}
 					onClick={(event) => event.stopPropagation()}
 				>
-					{/* <h1 style={{ textAlign: "center", margin: "0" }}>SHOPPING CART</h1> */}
 					<S.CartWindow>
 						<S.Column className="productList">
-							<h2 style={{ textAlign: "center", fontSize: "2em" }}>
-								SHOPPING CART
-							</h2>
+							<S.Title className="title">SHOPPING CART</S.Title>
 							<S.List>
 								{products &&
 									products.map((p, index) => {
 										return (
 											<li key={`cartlist${index}`}>
-												<ProductSection key={`cartproductlist${index}`} product={p} />
-												<hr />
-											</li>											
+												<ProductSection
+													key={`cartproductlist${index}`}
+													product={p}
+												/>
+												{/* <hr /> */}
+											</li>
 										);
 									})}
 							</S.List>
 						</S.Column>
 
 						<S.Column className="total">
-							<h2 style={{ textAlign: "center", fontSize: "1.5em" }}>Total</h2>
+							<S.Title>Total</S.Title>
 							{/* <S.Grid> */}
-							<S.List>
+							<S.List style={{ borderBottom: "1px solid rgba(0, 0, 0, 0.3)" }}>
 								{products &&
 									products.map((p, index) => {
 										return (
@@ -129,8 +111,7 @@ const Cart = (props) => {
 										);
 									})}
 							</S.List>
-							<hr />
-							{/* <S.Grid className="totalPrice"> */}
+							{/* <hr /> */}
 							<p>
 								<b>
 									Total:
@@ -138,12 +119,22 @@ const Cart = (props) => {
 								</b>
 							</p>
 							{/* </S.Grid> */}
-							<S.CheckoutButton height={"45px"} onClick={handleCheckout}>
-								GO TO CHECKOUT &rarr;
-							</S.CheckoutButton>
+							<Link
+								to={{
+									pathname: location.url,
+									search: `?requestinvoice=true`,
+								}}
+							>
+								<S.CheckoutButton height={"45px"}>
+									REQUEST INVOICE &rarr;
+								</S.CheckoutButton>
+							</Link>
 						</S.Column>
 					</S.CartWindow>
-					<CloseButton dark={true} onClick={() => history.push(location.pathname)} />
+					<CloseButton
+						dark={true}
+						onClick={() => history.push(location.pathname)}
+					/>
 				</MainModal>
 			</PortalModal>
 		)

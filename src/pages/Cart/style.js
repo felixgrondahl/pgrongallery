@@ -12,6 +12,10 @@ export const CartWindow = styled(FloatingPanel)`
 	justify-content: space-between;
 	box-sizing: border-box;
 	/* box-shadow: 0px 0px 20px #000000; */
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
 `;
 
 export const Column = styled.div`
@@ -19,28 +23,59 @@ export const Column = styled.div`
 	box-sizing: border-box;
 	margin: 0px 20px;
 	padding: 20px;
-	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+	/* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); */
+
+	@media (max-width: 768px) {
+		padding: 5px;
+		/* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.09); */
+	}
 
 	&.total {
 		/* min-height: 50%; */
-		width: 600px;
+		width: 35%;
 		margin-left: 0px;
+		border-left: 1px solid rgba(0, 0, 0, 0.3);
+		@media (max-width: 768px) {
+			width: 100%;
+			margin: 0;
+		}
 	}
 
 	&.productList {
-		width: 100%;
+		width: 65%;
 		overflow-y: auto;
+
+		@media (max-width: 768px) {
+			width: 100%;
+			/* height: 100%; */
+			margin: 0;
+			overflow: scroll;
+			-webkit-overflow-scrolling: touch;
+		}
+	}
+`;
+
+export const Title = styled.h2`
+	text-align: center;
+	font-size: 2em;
+	width: 100%;
+
+	@media (max-width: 768px) {
+		width: 100%;
+		text-align: center;
+		font-size: 1.2em;
+		padding: 3px 0px;
 	}
 `;
 
 export const Product = styled.div`
 	position: relative;
 	display: grid;
-	height: 150px;
-	grid-template-columns: 20% 65% 15%;
-	padding: 1em;
+	height: 30%;
+	grid-template-columns: 20% 55% 25%;
+	padding: 0.8em;
 	box-sizing: border-box;
-
+	border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 	/* border-radius: 3px; */
 	/* background: radial-gradient(
 		circle,
@@ -52,12 +87,24 @@ export const Product = styled.div`
 
 	.info {
 		padding: 0 1em;
+		@media (max-width: 768px) {
+			padding: 0 0.5em;
+
+			p {
+				font-size: 0.9em;
+				color: rgba(0, 0, 0, 0.7);
+			}
+		}
 	}
 
 	.right {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+	}
+
+	@media (max-width: 768px) {
+		padding: 0.1em;
 	}
 `;
 
@@ -77,20 +124,26 @@ export const ProductImg = styled.img`
 
 export const ProductButton = styled(TextButton)`
 	color: black;
-	position: absolute;
+	/* position: absolute; */
 	width: auto;
 	height: auto;
-	bottom: 0;
+	/* bottom: 0;
+	right: 0; */
 	padding: 0;
-	margin-bottom: 1em;
+	/* margin-bottom: 1em; */
 	opacity: 0.6;
 	font-size: 0.9em;
 
 	transition-property: color;
-	transition-duration: .25s;
+	transition-duration: 0.25s;
 
 	&:hover {
 		color: rgba(0, 0, 0, 0.8);
+	}
+
+	@media (max-width: 768px) {
+		font-size: 0.9em;
+		margin-top: 5px;
 	}
 `;
 
@@ -103,15 +156,30 @@ export const List = styled.ul`
 	list-style-type: none;
 	padding: 0px;
 
+	@media (max-width: 768px) {
+		margin: 0px;
+	}
+
 	li {
 		padding: 5px 0px;
+		@media (max-width: 768px) {
+			padding: 2px;
+		}
 	}
+
+	/* @media (max-width: 768px) {
+			display: block;
+		} */
 `;
 
 export const CheckoutButton = styled(Button)`
 	width: 100%;
 	margin-bottom: 50px;
 	margin-top: 50px;
+
+	@media (max-width: 768px) {
+		margin: 10px 0px;
+	}
 `;
 
 export const Price = styled.p`
@@ -120,10 +188,14 @@ export const Price = styled.p`
 	font-size: 1.1em;
 	letter-spacing: 0.3em;
 	font-weight: 400;
-	padding: 10px 10px;
+	/* padding: 10px 10px; */
 	/* border: 1px solid rgba(17, 17, 21, 0.5);*/
 	/* background-color: black; */
 	/* color: white; */
 	border-radius: 3px;
 	/* box-shadow: 0px 0px 10px rgba(15, 15, 24, 0.8); */
+
+	@media (max-width: 768px) {
+		font-size: 1em;
+	}
 `;

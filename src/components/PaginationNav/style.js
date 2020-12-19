@@ -3,9 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const navWrapper = styled.div`
 	margin: auto;
-	width: 30%;
     min-width: 120px;
-    max-width: 300px;
+    max-width: 200px;
     padding: 5px 0px;
 	display: flex;
 	flex-direction: row;
@@ -15,8 +14,9 @@ export const navWrapper = styled.div`
 
 	text-align: center;
 	user-select: none;
+	/* background-color: rgba(40,40,40,1); */
 
-    background: radial-gradient(circle, rgba(40,40,40,1) 0%, rgba(0,0,0,0) 100%);
+    /* background: radial-gradient(circle, rgba(40,40,40,1) 0%, rgba(0,0,0,0) 100%); */
 `;
 
 export const buttonWrapper = styled.div`
@@ -32,12 +32,12 @@ export const buttonWrapper = styled.div`
 export const arrow = styled(FontAwesomeIcon)`
 		width: inherit;
 		height: inherit;
-        color: rgba(200, 200, 200, 0.9);
+        color: rgba(0, 0, 0, 0.8);
         cursor: pointer;
         transition-property: color;
         transition-duration: 0.3s;
 
         &:hover {
-            color: white;
+            color: black;
         }
 `;

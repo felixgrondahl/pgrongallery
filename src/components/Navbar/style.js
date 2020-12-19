@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 
 export const Navbar = styled.nav`
 	color: white;
+	width: 100%;
 	position: fixed;
-	top: 0px;
+	box-sizing: border-box;
+	/* top: 0px;
 	left: 0px;
-	right: 0px;
+	right: 0px; */
 	height: ${(props) => props.theme.navbarHeight};
 	padding: 0 1rem;
 	background: linear-gradient(
@@ -21,28 +23,39 @@ export const Navbar = styled.nav`
 	text-transform: uppercase;
 	user-select: none;
 	/* z-index: 5; */
+
+	@media (max-width: 768px) {
+            font-size: 1em;
+			padding: 0 0.5rem;
+	}
 `;
 
-export const NavbarContent = styled.ul`
+export const NavbarContent = styled.div`
 	display: flex;
-	list-style: none;
+	/* list-style: none; */
 	margin: 0px;
 	padding: 0px;
 	height: 100%;
 	margin-left: ${(props) => (props.pushed ? "auto" : "0px")};
+	
 `;
 
-export const NavbarItem = styled.li`
+export const NavbarItem = styled.div`
 	display: flex;
 	align-items: center;
 	justify-items: center;
-	margin: 0px 20px;
+	margin: 0px 40px;
+	
 
 	transition-property: color;
 	transition-duration: .25s;
 
 	&:hover {
 		color: rgba(256,256,256,0.7);
+	}
+
+	@media (max-width: 768px) {
+		margin: 0px 20px;
 	}
 `;
 

@@ -18,12 +18,19 @@ export const TextContainer = styled(FreeFloating)`
     /* margin-top: 25px; */
     /* margin-bottom: 30px; */
     /* margin-left: ${props => props.pushed ? "200px" : "-100px"}; */
+    width: 100%;
+    margin-left: ${props => props.left ? "-20%" : "20%"};
     padding: 30px;
     /* width: 100%; */
     /* position: relative; */
+
+    @media(max-width: 768px) {
+		width: 100%;
+        margin: 20px 0px;
+	}
     
     p {
-        border-left: 1px solid #f9f4f1;
+        border-left: 1px solid rgba(50, 50, 50, 0.5);
         padding: 5px;
     }
 `;
