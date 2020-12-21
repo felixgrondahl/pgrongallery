@@ -6,7 +6,7 @@ const Home = () => {
 	return (
 		<MainColumn>
 			<S.HomeHeader>
-				<h1 style={{ animation: "FadeIn 5s" }}>PETER GRÖNDAHL</h1>
+				<S.HeaderTitle>PETER GRÖNDAHL</S.HeaderTitle>
 			</S.HomeHeader>
 
 			<S.AboutContainer>

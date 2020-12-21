@@ -7,11 +7,7 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 
-    /* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;800&display=swap'); */
-    /* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap'); */
-
     * {
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
     body {
@@ -137,11 +133,6 @@ const GlobalStyle = createGlobalStyle`
         /* position: fixed; */
         /* height: 100vh;
         width: 100vw; */
-    }
-
-    @keyframes FadeIn{
-        0% { opacity: 0; }
-        100% { opacity: 1; }
     }
 `;
 

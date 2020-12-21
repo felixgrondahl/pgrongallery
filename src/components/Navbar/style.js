@@ -45,6 +45,7 @@ export const NavbarItem = styled.div`
 	align-items: center;
 	justify-items: center;
 	margin: 0px 40px;
+	letter-spacing: 0.1em;
 	
 
 	transition-property: color;

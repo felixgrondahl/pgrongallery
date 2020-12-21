@@ -34,7 +34,7 @@ function App() {
 
 	useEffect(() => {
 		const waitForCache = async () => {
-			console.log("CHECKING CACHING!");
+			// console.log("CHECKING CACHING!");
 			await CacheData();
 			setCached(true);
 		};
@@ -52,8 +52,6 @@ function App() {
 				<S.AnimatedRoutes key={key} style={props}>
 					<Switch location={location}>
 						<Route path="/" exact component={Home} />
-						{/* <Route path="/About" component={About} /> */}
-						{/* <Route path="/Gallery" component={Gallery} /> */}
 						<Route
 							path="/Gallery"
 							render={(props) => <Gallery {...props} cached={cached} />}

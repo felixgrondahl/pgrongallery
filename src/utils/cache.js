@@ -4,7 +4,7 @@ const writeToCache = (key, dataToStore) => {
 };
 
 const readFromCache = (key) => {
-	console.log(JSON.parse(localStorage.getItem(key)));
+	// console.log(JSON.parse(localStorage.getItem(key)));
 
 	return localStorage.getItem(key)
 		? JSON.parse(localStorage.getItem(key))

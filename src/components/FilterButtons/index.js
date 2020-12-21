@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 //Go through all filters create JSX for each button
 export const FilterButtons = ({ filters, currentFilter, OnFilter }) => {
-	console.log("Render FilterButtons");
+
 	return (
 		<div style={{ marginBottom: "15px" }}>
 			{filters.map((filter) => {

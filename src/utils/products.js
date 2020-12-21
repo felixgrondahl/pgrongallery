@@ -51,7 +51,7 @@ export const FilterProducts = (filter, products) => {
 
 export const GetCachedProductData = () => {
 	const cachedProducts = getCachedData(url);
-	console.log(cachedProducts);
+	// console.log(cachedProducts);
 	return cachedProducts ? cachedProducts : null;
 };
 
@@ -59,7 +59,7 @@ export const CacheData = async () => {
 	const data = GetCachedProductData();
 	if (data) {
 		//Check hours passed since last cache, note we dont need the full date for this.
-		const timePassed = Math.abs(data.timeCached - new Date().getHours); //data.dateCached.
+		const timePassed = Math.abs(data.timeCached - new Date().getHours()); //data.dateCached.
 		if (timePassed > 1) {
 			//if cached data is more than 1 hour old, get fresh data to cach.
 			await CacheFreshProductData();
@@ -71,13 +71,12 @@ export const CacheData = async () => {
 };
 
 export const CacheFreshProductData = async () => {
-	console.log("Caching Fresh Data!");
+	// console.log("Caching Fresh Data!");
 	const query = `
             {
                 products {
 					publishedAt
 					id
-					stripePriceId
 					price
 					title
 					description
@@ -97,9 +96,9 @@ export const CacheFreshProductData = async () => {
         `;
 
 	await cacheFreshData(url, query, true).catch((error) => {
-		console.log(error);
+		// console.log(error);
+		alert("There seems like something went wrong, please refresh and try again...");
 		localStorage.removeItem(url);
-		window.location.reload();
 	});
 
 	// console.log(products);
@@ -117,13 +116,11 @@ export const AddProductToCart = (productData) => {
 		//If true: add productData to current cart items and update localstorage with new products.
 		//cart is and array of objects
 		const cart = JSON.parse(currentCart);
-		console.log("We already have a cart: " + cart);
+		// console.log("We already have a cart: " + cart);
 		//Do we already have this product in our cart? if true: add +1 to quantity of said product.
 		const existingProductIndex = cart.findIndex((p) => p.id === productData.id);
 		if (existingProductIndex > -1) {
-			console.log(`${productData.title} already exists in your cart`);
-			// cart[existingProductIndex].quantity =
-			// 	cart[existingProductIndex].quantity + 1;
+			// console.log(`${productData.title} already exists in your cart`);
 		} else {
 			console.log(
 				`Product: ${productData.title} does not exist in your cart, adding it...`
@@ -131,12 +128,12 @@ export const AddProductToCart = (productData) => {
 			cart.push(productData);
 		}
 
-		console.log(`Setting new cart: ${cart}`);
+		// console.log(`Setting new cart: ${cart}`);
 		localStorage.setItem("cart", JSON.stringify(cart));
 	} else {
-		console.log(
-			`You don't have a cart item in you localStorage yet, adding it...`
-		);
+		// console.log(
+		// 	`You don't have a cart item in you localStorage yet, adding it...`
+		// );
 		localStorage.setItem("cart", JSON.stringify([productData]));
 	}
 
