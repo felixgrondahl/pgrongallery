@@ -9,5 +9,5 @@ export const FullWindow = styled(animated.div)`
 	right: 0;
 	/* width: 100%;
     height: 100%; */
-	background-color: rgba(20, 20, 20, 0.5);
+	background-color: rgba(20, 20, 20, 0.6);
 `;

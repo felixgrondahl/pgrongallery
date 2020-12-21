@@ -16,13 +16,15 @@ export const Close = styled(TextButton)`
 	text-decoration: none;
 	font-size: 3em;
 	user-select: none;
-	color: rgba(0, 0, 0, 0.6);
+	color: ${(props) => (props.dark ? "rgba(0, 0, 0, 0.6);" : "white")};
+	/* color: rgba(0, 0, 0, 0.6); */
 	text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
 	/* text-align: center; */
 
 	@media (max-width: 768px) {
 		top: -7px;
 		right: -5px;
-		color: rgba(0, 0, 0, 0.8);
+		color: ${(props) => (props.dark ? "rgba(0, 0, 0, 0.8);" : "white")};
+		/* color: rgba(0, 0, 0, 0.8); */
 	}
 `;

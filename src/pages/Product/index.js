@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import PortalModal from "../../components/Modal/PortalModal/";
 import * as S from "./style";
@@ -7,6 +7,7 @@ import { getCachedItem } from "../../utils/request";
 import LightboxGallery from "../../components/Lightbox";
 import { url, AddProductToCart } from "../../utils/products";
 import PropTypes from "prop-types";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 const Product = (props) => {
 	// eslint-disable-next-line react/prop-types
@@ -21,12 +22,15 @@ const Product = (props) => {
 	const [productData, setProductData] = useState();
 	const [showModal, setShowModal] = useState(false);
 	const [showImage, setShowImage] = useState({ show: false, imageIndex: 0 });
+	const modalRef = useRef();
 
 	useEffect(() => {
 		if (searchParam && cached) {
 			setProductData(getCachedItem(url, productId));
 			setShowModal(true);
+			disableBodyScroll(modalRef);
 		} else {
+			enableBodyScroll(modalRef);
 			setShowModal(false);
 		}
 	}, [searchParam, cached, productId]);
@@ -54,6 +58,7 @@ const Product = (props) => {
 	return (
 		showModal && (
 			<PortalModal
+				ref={modalRef}
 				onClick={() => !showImage.show && history.push(location.pathname)}
 			>
 				<S.ProductWindow onClick={(event) => event.stopPropagation()}>

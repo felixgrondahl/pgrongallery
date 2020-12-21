@@ -44,12 +44,14 @@ export const Column = styled.div`
 	&.productList {
 		width: 65%;
 		overflow-y: auto;
+		overflow-x: hidden;
 
 		@media (max-width: 768px) {
 			width: 100%;
 			/* height: 100%; */
 			margin: 0;
-			overflow: scroll;
+			overflow-y: scroll;
+			overflow-x: hidden;
 			-webkit-overflow-scrolling: touch;
 		}
 	}

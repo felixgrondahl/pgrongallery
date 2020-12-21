@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import { MainModal, CenteredForm } from "../../styles/generic/Containers";
 import { TextInput } from "../../styles/generic/TextInput";
@@ -8,6 +8,7 @@ import CloseButton from "../../components/CloseButton";
 import emailjs from "emailjs-com";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { enableBodyScroll, disableBodyScroll } from "body-scroll-lock";
 
 const regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
 emailjs.init("user_mTBReTOfvtd1wurL6sAFJ");
@@ -54,19 +55,24 @@ const RequestInvoice = (props) => {
 	const history = useHistory();
 	const [formState, setFormState] = useState({});
 	const [sentReq, setSentReq] = useState(false);
-
+	const modalRef = useRef();
 	// const handleChange = (event) => {
 	//     this.setState({value: event.target.value});
 	// }
 
 	useEffect(() => {
-		!searchParam && setSentReq(false);
+		if (searchParam) {
+			disableBodyScroll(modalRef);
+		} else {
+			enableBodyScroll(modalRef);
+			setSentReq(false);
+		}
 	}, [searchParam]);
 
 	return (
-		params.get("requestinvoice") && (
+		searchParam && (
 			<div>
-				<PortalModal onClick={() => history.push(location.pathname)}>
+				<PortalModal ref={modalRef} onClick={() => history.push(location.pathname)}>
 					<MainModal onClick={(event) => event.stopPropagation()}>
 						{sentReq ? (
 							<ReqSentWrapper>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useLocation, useHistory, Link } from "react-router-dom";
 import { MainModal } from "../../styles/generic/Containers";
 import PortalModal from "../../components/Modal/PortalModal/";
@@ -8,6 +8,7 @@ import { RemoveItemFromCart } from "../../utils/products";
 import * as S from "./style";
 import CloseButton from "../../components/CloseButton";
 import PropTypes from "prop-types";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 const Cart = (props) => {
 	// eslint-disable-next-line react/prop-types
@@ -16,10 +17,17 @@ const Cart = (props) => {
 	const location = useLocation();
 	const history = useHistory();
 	const [products, setProducts] = useState(); //initialize this with localstorage cart
+	const modalRef = useRef();
 	// const [updateCart, setUpdateCart] = useState(true);
 
 	useEffect(() => {
-		searchParam && updateCart();
+		if(searchParam) {
+			updateCart();
+			disableBodyScroll(modalRef);
+		}
+		else {
+			enableBodyScroll(modalRef);
+		}
 		// setUpdateCart(false);
 	}, [searchParam]);
 
@@ -69,7 +77,10 @@ const Cart = (props) => {
 
 	return (
 		params.get("cart") && (
-			<PortalModal onClick={() => history.push(location.pathname)}>
+			<PortalModal
+				ref={modalRef}
+				onClick={() => history.push(location.pathname)}
+			>
 				<MainModal
 					style={{ padding: "5px", paddingTop: "30px" }}
 					onClick={(event) => event.stopPropagation()}
