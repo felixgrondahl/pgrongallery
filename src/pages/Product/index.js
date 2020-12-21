@@ -73,6 +73,7 @@ const Product = (props) => {
 										onClick={() =>
 											setShowImage({ show: true, imageIndex: index })
 										}
+										alt={`${productData.title} artwork ${index}`}
 									/>
 								);
 							})}

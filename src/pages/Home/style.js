@@ -1,55 +1,49 @@
-import styled from 'styled-components';
-import { FreeFloating, Header } from '../../styles/generic/Containers';
-// import HeaderBackground from '../../assets/images/Home/HomeHeaderBkg.png';
-// import HeaderBackgroundOutline from '../../assets/images/Home/HomeHeaderBkg-outline.png';
-// import BottomImage from '../../assets/images/Home/closedeyes-cut-new.png';
-
+import styled from "styled-components";
+import {
+	BaseContainer,
+	FreeFloating,
+	Header,
+} from "../../styles/generic/Containers";
+import BottomImage from "../../assets/images/Home/HomeHeaderBkg.png";
 
 export const HomeHeader = styled(Header)`
-
-    /* margin-bottom: 30px; */
-    position: relative;
-    /* background: linear-gradient(60deg, rgba(0,0,0,0.7) 0%, rgba(255,255,255,0) 33%, rgba(255,249,249,0) 66%, rgba(0,0,0,0.7) 100%); */
+	position: relative;
 `;
 
-export const TextContainer = styled(FreeFloating)`
-    /* margin: 60px; */
-    /* background-color: #262626; */
-    /* margin-top: 25px; */
-    /* margin-bottom: 30px; */
-    /* margin-left: ${props => props.pushed ? "200px" : "-100px"}; */
-    width: 100%;
-    margin-left: ${props => props.left ? "-20%" : "20%"};
-    padding: 30px;
-    /* width: 100%; */
-    /* position: relative; */
+export const AboutContainer = styled(BaseContainer)`
+	position: relative;
+	margin-top: 30px;
 
-    @media(max-width: 768px) {
-		width: 100%;
-        margin: 20px 0px;
-	}
-    
-    p {
-        border-left: 1px solid rgba(50, 50, 50, 0.5);
-        padding: 5px;
+    background-image: url(${BottomImage});
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: right center;
+
+    @media (max-width: 768px) {
+        background-image: none;
     }
 `;
 
-export const OverlayImg = styled.img`
+export const TextContainer = styled(FreeFloating)`
+	padding: 30px;
+	width: 70%;
+	margin-left: -20px;
+	white-space: pre-line;
 
-    object-fit: contain;
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    
-    /* position: relative; */
-    /* position: relative;
+	@media (max-width: 768px) {
+		width: 100%;
+		margin: 20px 0px;
+        padding: 5px;
+		transform: translateX(0);
+	}
 
+	p {
+		border-left: 1px solid rgba(50, 50, 50, 0.5);
+		padding: 5px 5px 5px 5em;
+		letter-spacing: 0.12em;
 
-    /* background-repeat: no-repeat; */
-    /* background-size: auto 100%; */
-    /* background-position: center; */
-    /* background-position-x: 45%; */
-
+        @media (max-width: 768px) {
+		padding: 1em 0 3em 1em;
+	}
+	}
 `;

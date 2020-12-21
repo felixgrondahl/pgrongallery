@@ -9,6 +9,7 @@ const CartButton = () => {
 			<S.CartButton
 				icon={faShoppingCart}
 				size="lg"
+				alt="Your shopping cart"
 			/>
 		</div>
 	);

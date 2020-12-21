@@ -7,7 +7,7 @@ import Product from "../../pages/Product";
 // import Login from "../../pages/Login";
 import RequestInvoice from "../../pages/RequestInvoice";
 import Cart from "../../pages/Cart";
-import CubeBackground from "../CubeBackground";
+// import CubeBackground from "../CubeBackground";
 import { Route, Switch, useLocation } from "react-router-dom";
 import GlobalStyle from "../../styles/global-styles";
 import { ThemeProvider } from "styled-components";
@@ -46,7 +46,7 @@ function App() {
 		<ThemeProvider theme={theme}>
 			<ScrollToTop />
 			<GlobalStyle />
-			<CubeBackground />
+			{/* <CubeBackground /> */}
 
 			{transition.map(({ item: location, props, key }) => (
 				<S.AnimatedRoutes key={key} style={props}>

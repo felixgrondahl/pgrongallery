@@ -14,7 +14,7 @@ export const Navbar = styled.nav`
 	padding: 0 1rem;
 	background: linear-gradient(
 		180deg,
-		rgba(0, 0, 0, 0.6) 0%,
+		rgba(20, 20, 20, 0.6) 0%,
 		rgba(255, 255, 255, 0) 100%
 	);
 	display: flex;

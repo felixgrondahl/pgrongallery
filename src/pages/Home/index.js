@@ -1,7 +1,6 @@
 import React from "react";
 import * as S from "./style";
-import { BaseContainer, MainColumn } from "../../styles/generic/Containers";
-import BottomImage from "../../assets/images/Home/closedeyes-cut-new.png";
+import { MainColumn } from "../../styles/generic/Containers";
 
 const Home = () => {
 	return (
@@ -10,48 +9,36 @@ const Home = () => {
 				<h1 style={{ animation: "FadeIn 5s" }}>PETER GRÖNDAHL</h1>
 			</S.HomeHeader>
 
-			<BaseContainer
-				style={{
-					position: "relative",
-					// marginBottom: "30px",
-					marginTop: "30px",
-				}}
-			>
-				<div style={{ position: "relative" }}>
+			<S.AboutContainer>
 					<S.TextContainer left={true}>
-						<h2 style={{ margin: "0px" }}>REAL ART</h2>
+						<h2 style={{ margin: "0px" }}>THE ARTIST</h2>
 						<p>
-							Amet culpa eu excepteur pariatur occaecat ad excepteur est sit
-							deserunt. Sint eiusmod nisi reprehenderit nostrud. Duis cupidatat
-							commodo velit sint. Officia adipisicing dolor minim id veniam
-							adipisicing tempor aute nisi aute sint tempor cupidatat. Eiusmod
-							nulla consectetur incididunt aliquip enim nulla eu do laborum est
-							anim. Aliqua officia id dolor voluptate ea ex irure voluptate
-							culpa. Amet officia eiusmod eu dolor consequat veniam consectetur
-							ex pariatur sit Lorem ad. Commodo minim magna irure nostrud
-							eiusmod eu. Laboris enim sint dolor ea.
+							Peter Gröndahl is a remarkably talented and innovative artist
+							presently working and residing in Palma de Mallorca. He arrived to
+							the Mediterranean 2010 on invitation by the owners of the Puro
+							Hotel to do its entire artwork. His varied pieces may be admired
+							while enjoying an aperitif in the lobby of the Puro Hotel or
+							contemplated upon with an after dinner liquor in its VIP halls.
+							Peter’s scope as an artist is unparalleled. Not only does he excel
+							in technique and delivery as a painter, Peter truly surpasses
+							himself in his soulfully sketched larger than life charcoal
+							portraits.{"\n"}
+							{"\n"}
+							Moreover he also charms us as a refined photographer producing
+							works of an almost poetic appeal. His sculptures like his
+							paintings are energetic filled with movement and executed with
+							grace. As an Image Designer Gröndahl displays both flair and
+							stylistic individualism, mixing in just the right touch of the
+							enticingly subversive. He is by all means an all round artist,
+							blessed with both skill and talent, his works a sheer pleasure to
+							look upon. And once we come into contact with the range of his
+							oeuvre, and become privy to the passion, dedication and fervour
+							with which he follows his calling, he will no doubt become
+							increasingly hard to ignore as a most significant figure in the
+							international art world of today.
 						</p>
 					</S.TextContainer>
-
-					{/* <S.OverlayImg src={BottomImage}/> */}
-
-					<S.TextContainer>
-						<h2 style={{ margin: "0px" }}>INNOVATION</h2>
-						<p>
-							Ut incididunt sint qui do et consectetur amet reprehenderit ut
-							aliquip anim culpa. Excepteur nisi reprehenderit Lorem ut
-							exercitation. Est consequat duis qui fugiat amet. Eiusmod
-							incididunt minim cupidatat culpa culpa esse. Incididunt Lorem
-							mollit irure non qui velit adipisicing duis anim veniam occaecat.
-							Officia quis voluptate irure laboris commodo velit Lorem voluptate
-							magna laboris occaecat elit fugiat qui. Et amet culpa laborum
-							occaecat adipisicing. Cillum nisi est aute aute cillum
-							exercitation pariatur. Ad officia sint nisi incididunt nostrud
-							cillum.
-						</p>
-					</S.TextContainer>
-				</div>
-			</BaseContainer>
+			</S.AboutContainer>
 		</MainColumn>
 	);
 };

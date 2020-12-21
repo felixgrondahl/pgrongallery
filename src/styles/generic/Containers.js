@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const MainColumn = styled.div`
-	width: 65vw;
+	width: 80vw;
 	/* width: 100%; */
 	/* display: flex; */
 	margin: auto;

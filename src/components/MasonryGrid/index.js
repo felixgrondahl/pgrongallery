@@ -80,7 +80,7 @@ const MasonryGrid = ({ data }) => {
 								search: `?product=true&productId=${item.id}`,
 							}}
 						>
-							<S.Image key={`url(${item.url})`} src={item.url} />
+							<S.Image key={`url(${item.url})`} src={item.url} alt={`${item.title} artwork thumbnail`} />
 						</Link>
 					</S.ImageWrapper>
 				))}

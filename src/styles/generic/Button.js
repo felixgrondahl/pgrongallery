@@ -47,9 +47,11 @@ export const TextButton = styled.button`
         border: none;
         outline: none;
     } */
+    transition: all .3s ease-out;
+    border: 1px solid rgba(0, 0, 0, 0);
 
 	&:focus {
-		border: none;
+		border: 1px solid rgba(0, 0, 0, 0.2);
 		outline: none;
 	}
 

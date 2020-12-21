@@ -3,6 +3,7 @@ import { animated } from "react-spring";
 
 export const AnimatedRoutes = styled(animated.div)`
 	/* display: flex; */
+
 	position: absolute;
 	will-change: transform, opacity;
 	width: 100%;
@@ -12,6 +13,7 @@ export const AnimatedRoutes = styled(animated.div)`
 	/* justify-content: center; */
 	align-items: center;
 	padding-bottom: 100px;
+	overflow-x: hidden;
 `;
 
 export const MainWrapper = styled.div`

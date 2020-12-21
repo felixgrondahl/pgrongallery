@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
     }
     body {
         color: #262626;
+        background-color: rgba(35, 35, 35);
         /* background-color: rgba(); */
         /* height: 100vh; */
         height: 100%;
@@ -78,7 +79,7 @@ const GlobalStyle = createGlobalStyle`
         font-size: 1em;
         /* text-shadow: 1px 1px #000000; */
         margin: 0px;
-        white-space: pre-wrap;
+        /* white-space: pre-wrap; */
         
         @media (max-width: 768px) {
             letter-spacing: 0.09em;

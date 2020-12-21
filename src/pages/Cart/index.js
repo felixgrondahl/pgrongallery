@@ -39,7 +39,7 @@ const Cart = (props) => {
 		// console.log(product);
 		return (
 			<S.Product>
-				<S.ProductImg src={product.images[0].thumbnail} />
+				<S.ProductImg src={product.images[0].thumbnail} alt={`${product.title} cart thumbnail`} />
 				<div className="info">
 					<h3 style={{ margin: "0 0 5px 0" }}>{product.title.toUpperCase()}</h3>
 					<p>{product.description}</p>
@@ -53,7 +53,7 @@ const Cart = (props) => {
 							updateCart();
 						}}
 					>
-						<FontAwesomeIcon icon={faTrash} style={{ marginRight: "0.9em" }} />
+						<FontAwesomeIcon icon={faTrash} style={{ marginRight: "0.9em" }} alt="Remove product icon"/>
 						REMOVE
 					</S.ProductButton>
 				</div>
