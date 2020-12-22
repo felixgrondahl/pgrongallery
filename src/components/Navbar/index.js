@@ -13,7 +13,7 @@ const Nav = () => {
 			<S.NavbarContent>
 				<NavItem path="/">Home</NavItem>
 				<NavItem path="/Gallery">Gallery</NavItem>
-				{/* <NavItem path="/About">About</NavItem> */}
+				<NavItem path="/Exhibitions">Exhibitions</NavItem>
 				{/* <NavItem path="/Contact">Contact</NavItem> */}
 			</S.NavbarContent>
 

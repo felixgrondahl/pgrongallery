@@ -56,7 +56,11 @@ export const NavbarItem = styled.div`
 	}
 
 	@media (max-width: 768px) {
-		margin: 0px 20px;
+		margin: 0px 10px;
+	}
+	@media (max-width: 320px) {
+		font-size: 0.9em;
+		letter-spacing: 0.05em;
 	}
 `;
 

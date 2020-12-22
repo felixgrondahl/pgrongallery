@@ -16,6 +16,7 @@ import { CacheData } from "../../utils/products";
 import * as S from "./style";
 import ScrollToTop from "../../components/ScrollToTop";
 import Footer from "../Footer";
+import Exhibitions from "../../pages/Exhibitions";
 
 const theme = {
 	navbarHeight: "60px",
@@ -56,6 +57,7 @@ function App() {
 							path="/Gallery"
 							render={(props) => <Gallery {...props} cached={cached} />}
 						/>
+						<Route path="/Exhibitions" component={Exhibitions}/>
 					</Switch>
 					<Footer />
 				</S.AnimatedRoutes>

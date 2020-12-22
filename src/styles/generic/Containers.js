@@ -10,7 +10,7 @@ export const MainColumn = styled.div`
 	/* flex-direction: column; */
 
 	@media (max-width: 768px) {
-		width: 90vw;
+		width: 95vw;
 	}
 `;
 
@@ -153,4 +153,29 @@ export const CenteredForm = styled.form`
 	transform: translate(-50%, -50%);
 	text-align: center;
 	/* box-sizing: border-box; */
+`;
+
+export const TextContainer = styled(FreeFloating)`
+	padding: 30px;
+	width: 70%;
+	margin-left: ${props => props.left ? "-20px" : "0px"};
+	white-space: pre-line;
+	box-sizing: border-box;
+
+	@media (max-width: 768px) {
+		width: 100%;
+		margin: 20px 0px;
+		padding: 2em 5px;
+		transform: translateX(0);
+	}
+
+	p {
+		border-left: 1px solid rgba(50, 50, 50, 0.5);
+		padding: 5px 5px 5px 5em;
+		letter-spacing: 0.12em;
+
+		@media (max-width: 768px) {
+			padding: 1em 0 3em 1em;
+		}
+	}
 `;

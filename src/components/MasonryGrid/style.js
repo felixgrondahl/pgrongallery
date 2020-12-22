@@ -25,7 +25,7 @@ export const Image = styled.img`
 
 	object-fit: contain;
     transition: all .3s ease-out;
-    border: 1px solid rgba(0, 0, 0, 0);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 
     @media(max-width: 768px) {
         object-fit: cover;

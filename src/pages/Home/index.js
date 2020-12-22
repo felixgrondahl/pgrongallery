@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "./style";
-import { MainColumn } from "../../styles/generic/Containers";
+import { MainColumn, TextContainer } from "../../styles/generic/Containers";
 
 const Home = () => {
 	return (
@@ -10,7 +10,7 @@ const Home = () => {
 			</S.HomeHeader>
 
 			<S.AboutContainer>
-					<S.TextContainer left={true}>
+					<TextContainer left={true}>
 						<h2 style={{ margin: "0px" }}>THE ARTIST</h2>
 						<p>
 							Peter Gröndahl is a remarkably talented and innovative artist
@@ -37,7 +37,7 @@ const Home = () => {
 							increasingly hard to ignore as a most significant figure in the
 							international art world of today.
 						</p>
-					</S.TextContainer>
+					</TextContainer>
 			</S.AboutContainer>
 		</MainColumn>
 	);
