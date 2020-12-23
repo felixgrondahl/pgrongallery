@@ -6,6 +6,7 @@ import { TextInput } from '../../styles/generic/TextInput';
 import PortalModal from '../../components/Modal/PortalModal/';
 
 const Login = (props) => {
+    // eslint-disable-next-line react/prop-types
     let params = new URLSearchParams(props.location.search);
     const location = useLocation();
     const history = useHistory();
