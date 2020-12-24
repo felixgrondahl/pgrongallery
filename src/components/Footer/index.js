@@ -5,7 +5,7 @@ const Footer = () => {
 	return (
 		<Wrapper>
 			{/* <div> */}
-				<MailLink href="mailto:pgronab@gmail.com">pgronab@gmail.com</MailLink>
+				<MailLink href="mailto:pgronart@gmail.com">pgronart@gmail.com</MailLink>
 				<p>&#169;Peter Grondahl</p>
 			{/* </div> */}
 		</Wrapper>

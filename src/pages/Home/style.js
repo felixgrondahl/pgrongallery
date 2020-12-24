@@ -25,6 +25,7 @@ export const HeaderTitle = styled.h1`
 export const AboutContainer = styled(BaseContainer)`
 	position: relative;
 	margin-top: 30px;
+	padding: 5em 0;
 
 	background-image: url(${BottomImage});
 	background-repeat: no-repeat;
