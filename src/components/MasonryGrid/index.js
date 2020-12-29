@@ -1,50 +1,42 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
 import { useTransition, config } from "react-spring";
 import useMedia from "../../Hooks/useMedia";
-// import useResizeObserver from "../../Hooks/useResizeObserver";
 import useResizeObserver from "use-resize-observer";
 import * as S from "./style";
 import PropTypes from "prop-types";
-// import data from '../../TestData/data';
 
-const MasonryGrid = ({ data }) => {
-	const location = useLocation();
+//data needs: [{image, id, height, onClick()}]
+const MasonryGrid = ({data}) => {
 	const numColumns = useMedia(
 		["(min-width: 1100px)", "(min-width: 768px)"],
 		[4, 2],
 		2
 	);
 
-	const { ref, width = 1, }  = useResizeObserver();
+	const { ref, width = 1 } = useResizeObserver();
 	const columnWidth = width / numColumns;
 
 	const colHeights = new Array(numColumns).fill(0);
-	// console.log(data);
 
 	//initialize all items with correct height width and position, etc.
 	const gridItems = data.map((item) => {
 		const colIndex = colHeights.indexOf(Math.min(...colHeights));
 		const xy = [columnWidth * colIndex, colHeights[colIndex]];
-		// console.log(item.images[0].url);
-		const image = item.images[0];
-		const height = 400;
-		colHeights[colIndex] += height;
+		colHeights[colIndex] += item.height;
 
 		return {
 			...item,
 			xy,
 			width: columnWidth,
-			height: height,
-			url: image.thumbnail,
+			height: item.height,
+			url: item.image,
 			id: item.id,
 		};
 	});
 
-	const galleryTransition = useTransition(gridItems, item => item.id, {
+	const galleryTransition = useTransition(gridItems, (item) => item.id, {
 		config: { ...config.default },
 		from: {
-			// height: 0,
 			transform: `translate3d(0px, 0px, 0px)`,
 			opacity: 0,
 		},
@@ -67,21 +59,16 @@ const MasonryGrid = ({ data }) => {
 	});
 
 	return (
-		<S.Wrapper
-			ref={ref}
-			style={{ height: `${400 * (8/numColumns)}px` }}
-		>
+		<S.Wrapper ref={ref} style={{ height: `${400 * (8 / numColumns)}px` }}>
 			<S.Gallery>
 				{galleryTransition.map(({ item, props, key }) => (
 					<S.ImageWrapper key={key} style={props}>
-						<Link key={`?product=true&productId=${item.id}`}
-							to={{
-								pathname: location.url,
-								search: `?product=true&productId=${item.id}`,
-							}}
-						>
-							<S.Image key={`url(${item.url})`} src={item.url} alt={`${item.title} artwork thumbnail`} />
-						</Link>
+						<S.Image
+							onClick={() => item.onClick()}
+							key={`url(${item.url})`}
+							src={item.url}
+							alt={`${item.title} artwork thumbnail`}
+						/>
 					</S.ImageWrapper>
 				))}
 			</S.Gallery>
@@ -90,7 +77,7 @@ const MasonryGrid = ({ data }) => {
 };
 
 MasonryGrid.propTypes = {
-	data: PropTypes.array
-}
+	data: PropTypes.array,
+};
 
 export default MasonryGrid;

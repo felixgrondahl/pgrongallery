@@ -1,4 +1,3 @@
-// import { useEffect, useState } from "react";
 import { getCachedData, cacheFreshData } from "./request";
 
 export const url =
@@ -44,8 +43,7 @@ export const FilterProducts = (filter, products) => {
 	if (filter !== filters[0]) {
 		filtered = filtered.filter((product) => product.type.includes(filter));
 	}
-	console.log(filtered);
-	// filtered = SortProducts(sortBy, filtered);
+
 	return filtered;
 };
 
@@ -71,7 +69,6 @@ export const CacheData = async () => {
 };
 
 export const CacheFreshProductData = async () => {
-	// console.log("Caching Fresh Data!");
 	const query = `
             {
                 products {
@@ -92,53 +89,49 @@ export const CacheFreshProductData = async () => {
 					productDepth
 					sold
 				}
+
+				commissions {
+					id
+					title
+					projectDescription
+					images {
+						url
+						thumbnail: url(transformation: {image: {resize: {height: 400, width: 400, fit: clip}}})
+						height
+						width
+					}
+				}
             }
         `;
 
 	await cacheFreshData(url, query, true).catch((error) => {
-		// console.log(error);
-		alert("There seems like something went wrong, please refresh and try again...");
+		alert(
+			"There seems like something went wrong, please refresh and try again..."
+		);
 		localStorage.removeItem(url);
 	});
-
-	// console.log(products);
-
-	// return products.products;
 };
 
 export const AddProductToCart = (productData) => {
 	//First get curret cart items from localstorage
 	const currentCart = localStorage.getItem("cart");
-	// productData.quantity = 1;
 
 	//Do we have any current cart items?
 	if (currentCart) {
 		//If true: add productData to current cart items and update localstorage with new products.
-		//cart is and array of objects
+		//cart is an array of objects
 		const cart = JSON.parse(currentCart);
-		// console.log("We already have a cart: " + cart);
-		//Do we already have this product in our cart? if true: add +1 to quantity of said product.
+
 		const existingProductIndex = cart.findIndex((p) => p.id === productData.id);
-		if (existingProductIndex > -1) {
-			// console.log(`${productData.title} already exists in your cart`);
-		} else {
-			console.log(
-				`Product: ${productData.title} does not exist in your cart, adding it...`
-			);
+		console.log(existingProductIndex);
+		if (existingProductIndex < 0) {
 			cart.push(productData);
 		}
 
-		// console.log(`Setting new cart: ${cart}`);
 		localStorage.setItem("cart", JSON.stringify(cart));
 	} else {
-		// console.log(
-		// 	`You don't have a cart item in you localStorage yet, adding it...`
-		// );
 		localStorage.setItem("cart", JSON.stringify([productData]));
 	}
-
-	// localStorage.setItem(key, JSON.stringify(obj));
-	//If false: create new localstorage item and add the productData to it.
 };
 
 export const RemoveItemFromCart = (productId) => {

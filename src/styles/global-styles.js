@@ -13,23 +13,8 @@ const GlobalStyle = createGlobalStyle`
     body {
         color: #262626;
         background-color: rgba(35, 35, 35);
-        /* background-color: rgba(); */
-        /* height: 100vh; */
         height: 100%;
         position: relative;
-        /* width: 100vw; */
-        /* font-family: Corbel, 'Helvetica', sans-serif; */
-    }
-    /* html,
-    body {
-        
-    } */
-
-    main {   
-        /* display: flex; */
-        /* align-items: center; */
-        /* width: 55vw; */
-        /* margin: auto; */
     }
     
     a {
@@ -38,7 +23,6 @@ const GlobalStyle = createGlobalStyle`
     }
 
     h1 {
-        /* color: #F2EDA7; */
         letter-spacing: 0.582em;
         font-size: 2.6em;
         font-weight: 300;
@@ -61,7 +45,6 @@ const GlobalStyle = createGlobalStyle`
     }
 
     h3 {
-        /* color: #c78d43; */
 		letter-spacing: 0.2em;
         font-weight: 300;
         
@@ -71,11 +54,9 @@ const GlobalStyle = createGlobalStyle`
     }
 
     p {
-        letter-spacing: 0.19em;
+        letter-spacing: 0.13em;
         font-size: 1em;
-        /* text-shadow: 1px 1px #000000; */
         margin: 0px;
-        /* white-space: pre-wrap; */
         
         @media (max-width: 768px) {
             letter-spacing: 0.09em;
@@ -84,10 +65,8 @@ const GlobalStyle = createGlobalStyle`
 
     button {
         color: #f9f4f1;
-        /* font-family: Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif; */
         letter-spacing: 0.19em;
         font-size: 0.97em;
-        /* text-shadow: 1px 1px #000000; */
         margin: 0px;
 
         @media (max-width: 768px) {
@@ -98,7 +77,6 @@ const GlobalStyle = createGlobalStyle`
 
     select {
         color: #f9f4f1;
-        /* font-family: Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif; */
         letter-spacing: 0.19em;
         font-size: 0.97em;
         text-shadow: 1px 1px #000000;
@@ -113,12 +91,9 @@ const GlobalStyle = createGlobalStyle`
     input {
         letter-spacing: 0.19em;
         font-size: 0.97em;
-        /* text-shadow: 1px 1px #000000; */
     }
 
     label {
-        
-        /* color: #c78d43; */
         font-size: 1.05em;
 		letter-spacing: 0.2em;
         font-weight: 400;
@@ -127,12 +102,6 @@ const GlobalStyle = createGlobalStyle`
             font-size: 1em;
         }
     
-    }
-
-    canvas {
-        /* position: fixed; */
-        /* height: 100vh;
-        width: 100vw; */
     }
 `;
 

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { TextButton } from "../../styles/generic/Button";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Navbar = styled.nav`
@@ -25,9 +26,30 @@ export const Navbar = styled.nav`
 	/* z-index: 5; */
 
 	@media (max-width: 768px) {
-            font-size: 1em;
-			padding: 0 0.5rem;
+		display: none;
+		/* font-size: 1em;
+		padding: 0 0.5rem; */
 	}
+`;
+
+export const MobileNavbar = styled(Navbar)`
+	@media (max-width: 768px) {
+		display: flex;
+		justify-content: space-between;
+		font-size: 1em;
+		padding: 0 0.5rem;
+		align-items: center;
+	}
+	@media (min-width: 769px) {
+		display: none;
+	}
+`;
+
+export const SidePanelButton = styled(TextButton)`
+	width: auto;
+	height: auto;
+	transform: scale(1.7);
+	margin: 0px 10px;
 `;
 
 export const NavbarContent = styled.div`
@@ -37,7 +59,10 @@ export const NavbarContent = styled.div`
 	padding: 0px;
 	height: 100%;
 	margin-left: ${(props) => (props.pushed ? "auto" : "0px")};
-	
+
+	/* @media (max-width: 768px) {
+		display: none;
+	} */
 `;
 
 export const NavbarItem = styled.div`
@@ -46,13 +71,12 @@ export const NavbarItem = styled.div`
 	justify-items: center;
 	margin: 0px 40px;
 	letter-spacing: 0.1em;
-	
 
 	transition-property: color;
-	transition-duration: .25s;
+	transition-duration: 0.25s;
 
 	&:hover {
-		color: rgba(256,256,256,0.7);
+		color: rgba(256, 256, 256, 0.7);
 	}
 
 	@media (max-width: 768px) {

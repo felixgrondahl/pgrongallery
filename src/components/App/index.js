@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Nav from "../Navbar";
-// import About from "../../pages/About";
 import Home from "../../pages/Home";
 import Gallery from "../../pages/Gallery";
 import Product from "../../pages/Product";
-// import Login from "../../pages/Login";
 import RequestInvoice from "../../pages/RequestInvoice";
 import Cart from "../../pages/Cart";
-// import CubeBackground from "../CubeBackground";
 import { Route, Switch, useLocation } from "react-router-dom";
 import GlobalStyle from "../../styles/global-styles";
 import { ThemeProvider } from "styled-components";
@@ -17,10 +14,10 @@ import * as S from "./style";
 import ScrollToTop from "../../components/ScrollToTop";
 import Footer from "../Footer";
 import Exhibitions from "../../pages/Exhibitions";
+import Commissions from "../../pages/Commissions";
 
 const theme = {
 	navbarHeight: "60px",
-	// boxShadowColor: "rgba(192, 192, 192)",
 };
 
 function App() {
@@ -35,7 +32,7 @@ function App() {
 
 	useEffect(() => {
 		const waitForCache = async () => {
-			// console.log("CHECKING CACHING!");
+			//Check the cache
 			await CacheData();
 			setCached(true);
 		};
@@ -43,11 +40,9 @@ function App() {
 	}, []);
 
 	return (
-		// <Router>
 		<ThemeProvider theme={theme}>
 			<ScrollToTop />
 			<GlobalStyle />
-			{/* <CubeBackground /> */}
 
 			{transition.map(({ item: location, props, key }) => (
 				<S.AnimatedRoutes key={key} style={props}>
@@ -57,21 +52,20 @@ function App() {
 							path="/Gallery"
 							render={(props) => <Gallery {...props} cached={cached} />}
 						/>
-						<Route path="/Exhibitions" component={Exhibitions}/>
+						<Route path="/Exhibitions" component={Exhibitions} />
+						<Route
+							path="/Commissions"
+							render={(props) => <Commissions {...props} cached={cached} />}
+						/>
 					</Switch>
 					<Footer />
 				</S.AnimatedRoutes>
-				
 			))}
 
 			<Nav />
 
-				
-
-			{/* <Route path="/" component={Login} /> */}
 			<Route path="/" component={RequestInvoice} />
 			<Route path="/" component={Cart} />
-			{/* <Route path="/Gallery/" component={Product} /> */}
 			<Route
 				path="/Gallery/"
 				render={(props) => <Product {...props} cached={cached} />}

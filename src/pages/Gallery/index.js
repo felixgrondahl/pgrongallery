@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import * as S from "./style";
 import { MainColumn } from "../../styles/generic/Containers";
 import { FilterButtons } from "../../components/FilterButtons";
@@ -21,8 +22,9 @@ const Gallery = ({ cached }) => {
 	const [sortBy, setSortBy] = useState(sortTypes.NEWDESCENDING);
 	const [filterBy, setFilterBy] = useState(filters[0]);
 	const [currentPage, setCurrentPage] = useState(1);
+	const history = useHistory();
+	const location = useLocation();
 
-	// console.log(productData);
 	const GetDisplayedProducts = useCallback((products, pageNum) => {
 		let displayed = [...products];
 		pageNum < 1 && (pageNum = 1);
@@ -37,9 +39,7 @@ const Gallery = ({ cached }) => {
 
 	useEffect(() => {
 		if (cached) {
-			// console.log(props.cached);
 			const cachedProductData = GetCachedProductData();
-			// console.log(cachedProductData);
 			cachedProductData &&
 				setProductData({
 					all: cachedProductData.data.products,
@@ -68,7 +68,6 @@ const Gallery = ({ cached }) => {
 
 	const Sort = useCallback(
 		(sort) => {
-			// SortProducts(sort, FilterProducts(filterBy, productData.all));
 			setSortBy(sort);
 			setCurrentPage(1);
 			const activeProducts = SortProducts(
@@ -95,16 +94,10 @@ const Gallery = ({ cached }) => {
 		setCurrentPage(page);
 	};
 
-	// const MemFilterButtons = useCallback(() => <FilterButtons filters={filters} currentFilter={filterBy} OnFilter={Filter}/>, [Filter, filterBy]);
-
 	return (
 		<>
 			{productData && (
 				<MainColumn>
-					{/* <S.GalleryHeader height={"65vh"} style={{ position: "relative" }}>
-						<h1>GALLERY</h1>
-					</S.GalleryHeader> */}
-
 					<S.MainWrapper>
 						<S.GalleryButtons>
 							<FilterButtons
@@ -112,16 +105,25 @@ const Gallery = ({ cached }) => {
 								currentFilter={filterBy}
 								OnFilter={Filter}
 							/>
-							<p style={{ display: "inline-block" }}>
-								SORT BY:{" "}
-							</p>
+							<p style={{ display: "inline-block" }}>SORT BY: </p>
 							<SelectDropdown
 								options={sortTypes}
 								onChange={(val) => Sort(val)}
 							/>
 						</S.GalleryButtons>
 						<div style={{ marginBottom: "10px" }}>
-							<MasonryGallery data={productData.displayed} />
+							<MasonryGallery
+								data={productData.displayed.map((item) => ({
+									image: item.images[0].thumbnail,
+									id: item.id,
+									height: 400,
+									onClick: () =>
+										history.push({
+											pathname: location.pathname,
+											search: `?product=true&productId=${item.id}`,
+										}),
+								}))}
+							/>
 						</div>
 
 						<PaginationNav
