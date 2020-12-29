@@ -14,20 +14,11 @@ export const navWrapper = styled.div`
 
 	text-align: center;
 	user-select: none;
-	/* background-color: rgba(40,40,40,1); */
-
-    /* background: radial-gradient(circle, rgba(40,40,40,1) 0%, rgba(0,0,0,0) 100%); */
 `;
 
 export const buttonWrapper = styled.div`
 	width: 5em;
 	height: 2.5em;
-
-	/* button {
-		width: inherit;
-		height: inherit;
-        font-weight: bold;
-	} */
 `;
 export const arrow = styled(FontAwesomeIcon)`
 		width: inherit;

@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-	/* background-color: #f8f8f8; */
-	/* width: 10em; */
 	position: relative;
 	width: 100vw;
 `;
@@ -18,7 +16,6 @@ export const DropdownHeader = styled.div`
 
 	box-sizing: border-box;
 
-
 	font-size: 16px;
 	line-height: 19px;
 	display: flex;
@@ -28,24 +25,17 @@ export const DropdownHeader = styled.div`
 	h3 {
 		margin: 0;
 	}
-
 `;
 
 export const DropdownListWrapper = styled.div``;
 
 export const DropdownList = styled.ul`
 	display: ${(props) => (props.open ? "flex" : "none")};
-	/* display: flex; */
 	flex-direction: column;
 	justify-content: center;
 	text-align: left;
 	padding: 0.5rem 1rem;
 	margin: 0;
-	/* height: ${({ open }) => (open ? "100%" : "0%")}; */
-	/* height: 100vh; */
-	/* position: absolute; */
-	/* top: 0;
-	left: 0; */
 	background-color: #F2F2F2;
 	text-transform: uppercase;
 

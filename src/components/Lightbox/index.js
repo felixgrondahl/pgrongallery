@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import PortalModal from "../Modal/PortalModal";
 import { LightboxWindow, LightboxImg } from "./style";
 import { useTransition } from "react-spring";
@@ -9,13 +9,11 @@ import PropTypes from "prop-types";
 import { Clamp } from "../../utils/clamp";
 
 const LightboxGallery = ({ images, closeCallback, startIndex = 0 }) => {
-	const isOpen = useRef(true);
-	// const imageIndex = useRef(startIndex); //index wont work correctly if I dont use Ref
+
 	const [imageIndex, setImageIndex] = useState(startIndex);
 
 	useEffect(() => {
 		const handleKey = (event) => {
-			if (isOpen.current) {
 				if (event.key === "Escape") {
 					closeCallback();
 				} else if (event.key === "ArrowRight") {
@@ -24,11 +22,9 @@ const LightboxGallery = ({ images, closeCallback, startIndex = 0 }) => {
 					setImageIndex(i => Clamp(i - 1, 0, images.length - 1));
 				}
 			}
-		};
 		document.addEventListener("keyup", handleKey);
 
 		return () => {
-			isOpen.current = false;
 			document.removeEventListener("keyup", handleKey);
 		};
 	}, [closeCallback, images.length]); 
@@ -40,7 +36,6 @@ const LightboxGallery = ({ images, closeCallback, startIndex = 0 }) => {
 	});
 
 	return (
-		// (isOpen &&
 		<PortalModal modalId="modal_lightbox" onClick={() => closeCallback()}>
 			<LightboxWindow onClick={(event) => event.stopPropagation()}>
 				{imageIndex > 0 && (
@@ -55,7 +50,6 @@ const LightboxGallery = ({ images, closeCallback, startIndex = 0 }) => {
 						}}
 					/>
 				)}
-				{/* <FontAwesomeIcon className="arrowLeft arrow" icon={faCaretLeft} size="4x" color="white" onClick={(event) => {event.stopPropagation(); gotoPrevious();}}/> */}
 				{imageIndex < images.length - 1 && (
 					<FontAwesomeIcon
 						className="arrowRight arrow"

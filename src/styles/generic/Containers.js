@@ -2,12 +2,7 @@ import styled from "styled-components";
 
 export const MainColumn = styled.div`
 	width: 80vw;
-	/* width: 100%; */
-	/* display: flex; */
 	margin: auto;
-
-	/* justify-content: center; */
-	/* flex-direction: column; */
 
 	@media (max-width: 768px) {
 		width: 95vw;
@@ -19,13 +14,11 @@ export const BaseContainer = styled.div`
 	width: 100%;
 
 	background-color: #0d0d0d;
-	/* background-color: rgba(50, 50, 50); */
 	box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.7);
 `;
 
 export const Header = styled(BaseContainer)`
 	text-align: center;
-	/* background: linear-gradient(60deg, rgba(0,0,0,0.5) 0%, rgba(255,255,255,0) 33%, rgba(255,249,249,0) 66%, rgba(0,0,0,0.5) 100%); */
 	background-color: white;
 
 	margin-top: ${(props) => props.theme.navbarHeight};
@@ -67,7 +60,6 @@ export const Header = styled(BaseContainer)`
 export const FloatingBase = styled.div`
 	background-color: white;
 	box-shadow: 0px 0px 40px -10px #000000;
-	/* box-shadow: -4px 5px ${(props) => props.theme.boxShadowColor}; */
 `;
 
 export const MainModal = styled(FloatingBase)`
@@ -84,7 +76,6 @@ export const MainModal = styled(FloatingBase)`
 	}
 
 	.close {
-		/* cursor: pointer; */
 		color: black;
 		position: absolute;
 		top: -20px;
@@ -118,8 +109,6 @@ export const FreeFloating = styled(FloatingBase)`
 `;
 
 export const FloatingPanel = styled(FloatingBase)`
-	/* background-color: #131418; */
-	/* background-color: white; */
 	padding: 5px;
 	box-sizing: border-box;
 	width: 120%;
@@ -140,11 +129,6 @@ export const GradientField = styled.div`
 	box-sizing: border-box;
 `;
 
-// export const Backdrop = styled.div`
-//     width: 100vw;
-//     height: 100vh;
-// `;
-
 export const CenteredForm = styled.form`
 	width: 95%;
 	position: relative;
@@ -152,7 +136,6 @@ export const CenteredForm = styled.form`
 	left: 50%;
 	transform: translate(-50%, -50%);
 	text-align: center;
-	/* box-sizing: border-box; */
 `;
 
 export const TextContainer = styled(FreeFloating)`

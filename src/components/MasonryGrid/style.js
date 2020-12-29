@@ -32,8 +32,6 @@ export const Image = styled.img`
     }
 
     &:hover {
-        /* transform: scale(1.005); */
-        /* border: 2px solid rgba(256, 256, 256, 1); */
         border: 1px solid rgba(0, 0, 0, 0.2);
     }
 `;

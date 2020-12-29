@@ -8,10 +8,8 @@ export const Wrapper = styled.div`
     justify-content: space-between;
 
     border: 1px solid rgba(50, 50, 50, 0.3);
-    /* border: 1px solid #c78d43; */
     border-radius: 3px;
     padding: 2px 6px;
-    /* background-color: rgba(17, 17, 21, 1); */
 `;
 
 export const QuantityNumber = styled.p`

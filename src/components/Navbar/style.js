@@ -8,9 +8,6 @@ export const Navbar = styled.nav`
 	width: 100%;
 	position: fixed;
 	box-sizing: border-box;
-	/* top: 0px;
-	left: 0px;
-	right: 0px; */
 	height: ${(props) => props.theme.navbarHeight};
 	padding: 0 1rem;
 	background: linear-gradient(
@@ -23,12 +20,9 @@ export const Navbar = styled.nav`
 	font-size: 1.2em;
 	text-transform: uppercase;
 	user-select: none;
-	/* z-index: 5; */
 
 	@media (max-width: 768px) {
 		display: none;
-		/* font-size: 1em;
-		padding: 0 0.5rem; */
 	}
 `;
 
@@ -54,15 +48,10 @@ export const SidePanelButton = styled(TextButton)`
 
 export const NavbarContent = styled.div`
 	display: flex;
-	/* list-style: none; */
 	margin: 0px;
 	padding: 0px;
 	height: 100%;
 	margin-left: ${(props) => (props.pushed ? "auto" : "0px")};
-
-	/* @media (max-width: 768px) {
-		display: none;
-	} */
 `;
 
 export const NavbarItem = styled.div`
@@ -99,17 +88,3 @@ export const StyledLink = styled(Link)`
 		text-decoration: none;
 	}
 `;
-
-// export const CartButton = styled(FontAwesomeIcon)`
-// 	cursor: pointer;
-// 	transition-duration: 0.2s;
-// 	transition-property: transform;
-
-// 	&:hover {
-// 		transform: scale(1.03);
-// 	}
-
-// 	&:active {
-// 		transform: scale(0.97);
-// 	}
-// `;

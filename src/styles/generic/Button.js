@@ -32,7 +32,6 @@ export const Button = styled.button`
 export const TextButton = styled.button`
 	background-color: rgba(0, 0, 0, 0);
 	color: ${(props) => (props.dark ? "black" : "white")};
-	/* color: white; */
 	border: none;
 	box-sizing: border-box;
 	width: ${(props) => (props.width ? props.width : "165px")};
@@ -43,10 +42,6 @@ export const TextButton = styled.button`
 	transition-property: color;
 	transition-duration: 0.25s;
 
-	/* &::selection {
-        border: none;
-        outline: none;
-    } */
     transition: all .3s ease-out;
     border: 1px solid rgba(0, 0, 0, 0);
 
@@ -59,6 +54,5 @@ export const TextButton = styled.button`
 		cursor: pointer;
 		color: ${(props) =>
 			props.dark ? "rgba(0, 0, 0, 0.7)" : "rgba(256,256,256,0.7)"};
-		/* color: rgba(256,256,256,0.7); */
 	}
 `;
