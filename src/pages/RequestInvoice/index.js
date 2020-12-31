@@ -56,9 +56,6 @@ const RequestInvoice = (props) => {
 	const [formState, setFormState] = useState({});
 	const [sentReq, setSentReq] = useState(false);
 	const modalRef = useRef();
-	// const handleChange = (event) => {
-	//     this.setState({value: event.target.value});
-	// }
 
 	useEffect(() => {
 		if (searchParam) {

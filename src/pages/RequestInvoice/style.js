@@ -10,8 +10,6 @@ export const InputWrapper = styled.div`
 		font-size: 0.9em;
 		color: rgba(30, 30, 30, 1);
 		margin-top: -3px;
-		/* margin-bottom: 4px; */
-		/* font-style: oblique; */
 	}
 
 	.react-tel-input input{
@@ -31,6 +29,10 @@ export const NameArea = styled.div`
 export const SendButton = styled(Button)`
 	width: 50%;
 	margin-top: 1.5em;
+
+	@media (max-width: 768px) {
+		width: 80%;
+	}
 `;
 
 export const ReqSentWrapper = styled.div`

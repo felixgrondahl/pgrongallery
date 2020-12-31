@@ -131,11 +131,14 @@ export const GradientField = styled.div`
 
 export const CenteredForm = styled.form`
 	width: 95%;
+	max-height: 95vh;
 	position: relative;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	text-align: center;
+
+	overflow-y: auto;
 `;
 
 export const TextContainer = styled(FreeFloating)`
