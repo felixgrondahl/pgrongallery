@@ -140,6 +140,7 @@ const Cart = (props) => {
 									REQUEST INVOICE &rarr;
 								</S.CheckoutButton>
 							</Link>
+							<p>Requesting invoice will allow us to calculate the shipping cost of your order.</p>
 						</S.Column>
 					</S.CartWindow>
 					<CloseButton
