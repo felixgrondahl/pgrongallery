@@ -26,9 +26,6 @@ export const ImageGrid = styled(FloatingPanel)`
 	overflow-y: auto;
 	overflow-x: hidden;
 
-	/* @media (max-width: 768px) {
-		margin-top: 20px;
-	} */
 	@media (max-width: 768px) {
 		padding: 5px;
 	}
@@ -38,15 +35,10 @@ export const ImageGrid = styled(FloatingPanel)`
 		align-items: center;
 	}
 
-	img:first-child {
-		/* width: 100%; */
-	}
-
 	img {
 		max-width: 500px;
 		max-height: 500px;
 		padding: 10px;
-		/* width: 50%; */
 		box-sizing: border-box;
 		object-fit: contain;
 		vertical-align: middle;
@@ -57,49 +49,6 @@ export const ImageGrid = styled(FloatingPanel)`
 		}
 	}
 `;
-
-// export const ImageGrid = styled(FloatingPanel)`
-// 	display: grid;
-// 	width: 200px;
-// 	height: 200px;
-// 	grid-template-columns: repeat(2, 1fr);
-// 	grid-template-rows: repeat(2, 1fr);
-// 	justify-items: center;
-// 	/* position: relative;
-// 	display: grid; */
-// 	/* position: relative;
-// 	grid-template-columns: ${(props) =>
-// 		props.numImages === 1 ? "1fr" : "0.5fr 0.5fr"};
-// 	gap: 15px;
-// 	padding: 15px;
-// 	height: 100%;
-// 	justify-items: center;
-// 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); */
-
-// 	@media (max-width: 768px) {
-// 		padding: 5px;
-// 	}
-
-// 	img {
-// 		width: 100%;
-// 		height: 100%;
-// 		/* height: 100%; */
-// 		/* width: 100%; */
-// 		object-fit: contain;
-// 	}
-
-// 	div {
-// 		width: 100%;
-// 		height: 100%;
-// 		/* height: 100%; */
-// 	}
-// 	/*
-// 	.main {
-// 		grid-row-start: 1;
-// 		grid-row-end: span
-// 			${(props) => (props.numImages - 1 > 0 ? props.numImages - 1 : 1)};
-// 	} */
-// `;
 
 export const ProductImage = styled.img`
 	border: 1px solid rgba(0, 0, 0, 0);

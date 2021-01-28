@@ -32,6 +32,7 @@ export const Image = styled.img`
     }
 
     &:hover {
+        cursor: pointer;
         border: 1px solid rgba(0, 0, 0, 0.2);
     }
 `;
