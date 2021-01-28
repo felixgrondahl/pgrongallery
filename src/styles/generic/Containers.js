@@ -111,8 +111,8 @@ export const FreeFloating = styled(FloatingBase)`
 export const FloatingPanel = styled(FloatingBase)`
 	padding: 5px;
 	box-sizing: border-box;
-	width: 120%;
-	margin-left: -10%;
+	/* width: 120%; */
+	/* margin-left: -10%; */
 	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
 
 	@media (max-width: 768px) {

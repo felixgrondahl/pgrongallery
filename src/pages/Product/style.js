@@ -3,10 +3,11 @@ import { Button } from "../../styles/generic/Button";
 import { MainModal, FloatingPanel } from "../../styles/generic/Containers";
 
 export const ProductWindow = styled(MainModal)`
-	padding: 2.3em;
+	padding: 2em;
 	position: relative;
 	display: grid;
 	grid-template-rows: 60% 40%;
+	height: 100%;
 
 	@media (max-width: 768px) {
 		padding: 1em;
@@ -15,33 +16,90 @@ export const ProductWindow = styled(MainModal)`
 `;
 
 export const ImageGrid = styled(FloatingPanel)`
-	display: grid;
-
+	display: flex;
+	flex-wrap: wrap;
 	position: relative;
-	grid-template-columns: ${(props) =>
-		props.numImages === 1 ? "10fr" : "5fr 5fr"};
-	grid-gap: 15px;
-	padding: 15px;
-	height: 100%;
+	padding: 5px;
 	justify-items: center;
-	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+	justify-content: center;
+	vertical-align: center;
+	overflow-y: auto;
+	overflow-x: hidden;
 
+	/* @media (max-width: 768px) {
+		margin-top: 20px;
+	} */
 	@media (max-width: 768px) {
 		padding: 5px;
 	}
 
-	img {
-		height: 100%;
-		width: 100%;
-		object-fit: contain;
+	div {
+		display: flex;
+		align-items: center;
 	}
 
-	.main {
-		grid-row-start: 1;
-		grid-row-end: span
-			${(props) => (props.numImages - 1 > 0 ? props.numImages - 1 : 1)};
+	img:first-child {
+		/* width: 100%; */
+	}
+
+	img {
+		max-width: 500px;
+		max-height: 500px;
+		padding: 10px;
+		/* width: 50%; */
+		box-sizing: border-box;
+		object-fit: contain;
+		vertical-align: middle;
+
+		@media (max-width: 768px) {
+			max-width: 200px;
+			max-height: ${(props) => `calc(500px/${props.numImages})`};
+		}
 	}
 `;
+
+// export const ImageGrid = styled(FloatingPanel)`
+// 	display: grid;
+// 	width: 200px;
+// 	height: 200px;
+// 	grid-template-columns: repeat(2, 1fr);
+// 	grid-template-rows: repeat(2, 1fr);
+// 	justify-items: center;
+// 	/* position: relative;
+// 	display: grid; */
+// 	/* position: relative;
+// 	grid-template-columns: ${(props) =>
+// 		props.numImages === 1 ? "1fr" : "0.5fr 0.5fr"};
+// 	gap: 15px;
+// 	padding: 15px;
+// 	height: 100%;
+// 	justify-items: center;
+// 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); */
+
+// 	@media (max-width: 768px) {
+// 		padding: 5px;
+// 	}
+
+// 	img {
+// 		width: 100%;
+// 		height: 100%;
+// 		/* height: 100%; */
+// 		/* width: 100%; */
+// 		object-fit: contain;
+// 	}
+
+// 	div {
+// 		width: 100%;
+// 		height: 100%;
+// 		/* height: 100%; */
+// 	}
+// 	/*
+// 	.main {
+// 		grid-row-start: 1;
+// 		grid-row-end: span
+// 			${(props) => (props.numImages - 1 > 0 ? props.numImages - 1 : 1)};
+// 	} */
+// `;
 
 export const ProductImage = styled.img`
 	border: 1px solid rgba(0, 0, 0, 0);

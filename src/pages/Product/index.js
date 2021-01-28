@@ -66,15 +66,16 @@ const Product = (props) => {
 						<S.ImageGrid numImages={productData.images.length}>
 							{productData.images.map((image, index) => {
 								return (
-									<S.ProductImage
-										key={image.url}
-										src={image.url}
-										className={index === 0 ? "main" : "sub"}
-										onClick={() =>
-											setShowImage({ show: true, imageIndex: index })
-										}
-										alt={`${productData.title} artwork ${index}`}
-									/>
+									<div key={image.url}> 
+										<S.ProductImage
+											src={image.url}
+											className={index === 0 ? "main" : "sub"}
+											onClick={() =>
+												setShowImage({ show: true, imageIndex: index })
+											}
+											alt={`${productData.title} artwork ${index}`}
+										/>
+									</div>
 								);
 							})}
 						</S.ImageGrid>
