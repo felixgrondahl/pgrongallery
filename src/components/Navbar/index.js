@@ -41,6 +41,7 @@ const Nav = () => {
 					<S.SidePanelButton
 						className={`${openSidePanel ? "buttonOpen" : "buttonClosed"}`}
 						onClick={() => setOpenSidePanel((val) => !val)}
+						aria-label="Navigation Menu"
 					>
 						<MobMenu />
 					</S.SidePanelButton>

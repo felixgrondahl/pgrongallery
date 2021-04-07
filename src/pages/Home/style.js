@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import BottomImage from "../../assets/images/Home/HomeHeaderBkg.png";
+import BottomImage from "../../assets/images/Home/HomeHeaderBkg1.png";
 import AboutImg from "../../assets/images/ElRey_Worksmall.jpg";
 import { device } from "../../styles/breakpoints";
 

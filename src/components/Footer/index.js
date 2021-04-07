@@ -5,7 +5,7 @@ import { ReactComponent as Email } from "../../assets/icons/email.svg";
 const Footer = () => {
 	return (
 		<Wrapper>
-			<MailLink href="mailto:pgronart@gmail.com">
+			<MailLink href="mailto:pgronart@gmail.com" aria-label="Email Button">
 				<Email />
 			</MailLink>
 			<p>&#169;Peter Grondahl</p>
