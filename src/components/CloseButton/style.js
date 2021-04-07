@@ -1,26 +1,27 @@
 import styled from "styled-components";
-import { TextButton } from "../../styles/generic/Button";
+// import { TextButton } from "../../styles/generic/Button";
 
-export const Close = styled(TextButton)`
-	display: inline-flex;
-	align-items: center;
-
+export const Wrapper = styled.button`
+	/* display: inline-flex; */
 	position: absolute;
-	top: -3px;
-	right: 0px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	vertical-align: middle;
+	top: 10px;
+	right: 10px;
 	width: 40px;
-	height: 30px;
+	height: 40px;
 
-	font-weight: 300;
-	text-decoration: none;
-	font-size: 3em;
-	user-select: none;
-	color: ${(props) => (props.dark ? "rgba(0, 0, 0, 0.6);" : "white")};
-	text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
+	cursor: pointer;
+	
+	svg {
+		width: 35px;
+		height: 35px;
+		fill: ${(props) => (props.dark ? "rgba(0, 0, 0, 0.6);" : "rgba(255, 255, 255, 0.6)")};
+	}
 
 	@media (max-width: 768px) {
-		top: -7px;
-		right: -5px;
-		color: ${(props) => (props.dark ? "rgba(0, 0, 0, 0.8);" : "white")};
+		top: 10px;
 	}
 `;

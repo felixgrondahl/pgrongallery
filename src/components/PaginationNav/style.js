@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const navWrapper = styled.div`
 	margin: auto;
-    min-width: 120px;
-    max-width: 200px;
-    padding: 5px 0px;
+	min-width: 120px;
+	max-width: 200px;
+	padding: 5px 0px;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -14,21 +13,33 @@ export const navWrapper = styled.div`
 
 	text-align: center;
 	user-select: none;
+	border-radius: 5px;
+`;
+
+export const PageNumber = styled.div`
+	p {
+		color: black;
+		font-weight: 600;
+		line-height: 2em;
+		font-size: 1.2em;
+	}
 `;
 
 export const buttonWrapper = styled.div`
 	width: 5em;
-	height: 2.5em;
-`;
-export const arrow = styled(FontAwesomeIcon)`
+	height: 1.8em;
+
+	svg {
+		fill: black;
+		cursor: pointer;
 		width: inherit;
 		height: inherit;
-        color: rgba(0, 0, 0, 0.8);
-        cursor: pointer;
-        transition-property: color;
-        transition-duration: 0.3s;
+		transform: ${props => props.left ? "rotateZ(0deg)" : "rotateZ(180deg)"};
+		opacity: 0.8;
+		transition: opacity 0.1s ease-in-out;
 
-        &:hover {
-            color: black;
-        }
+		&:hover {		
+			opacity: 1;
+		}
+	}
 `;

@@ -3,8 +3,6 @@ import Nav from "../Navbar";
 import Home from "../../pages/Home";
 import Gallery from "../../pages/Gallery";
 import Product from "../../pages/Product";
-import RequestInvoice from "../../pages/RequestInvoice";
-import Cart from "../../pages/Cart";
 import { Route, Switch, useLocation } from "react-router-dom";
 import GlobalStyle from "../../styles/global-styles";
 import { ThemeProvider } from "styled-components";
@@ -15,9 +13,11 @@ import ScrollToTop from "../../components/ScrollToTop";
 import Footer from "../Footer";
 import Exhibitions from "../../pages/Exhibitions";
 import Commissions from "../../pages/Commissions";
+import { Helmet } from "react-helmet";
 
 const theme = {
 	navbarHeight: "60px",
+	navbarHeightMobile: "40px",
 };
 
 function App() {
@@ -40,39 +40,49 @@ function App() {
 	}, []);
 
 	return (
-		<ThemeProvider theme={theme}>
-			<ScrollToTop />
-			<GlobalStyle />
+		<>
+			<Helmet>
+				<title>Peter Grondahl</title>
+				<meta
+					name="description"
+					content="Peter Gröndahl is a remarkably talented and innovative artist
+			presently working and residing in Palma de Mallorca."
+				/>
+				<link rel="canonical" href="https://pgron.com" />
+				<meta property="og:type" content="website" />
+				<meta property="og:site_name" content="Peter Grondahl" />
+				<meta property="og:url" content="https://pgron.com" />
+				<meta property="og:title" content="Peter Grondahl" />
+				<meta property="og:description" content="The official Peter Grondahl homepage." />
+				<meta property="og:image" content="https://pgron.com/OGImage.png" />
+				<meta property="og:image:alt" content="Peter Grondahl og-image" />
+				<meta property="og:image:width" content="1200" />
+				<meta property="og:image:height" content="630" />
+				<meta property="twitter:card" content="summary_large_image" />
+				<meta property="twitter:image:alt" content="Peter Grondahl Header" />
+			</Helmet>
 
-			{transition.map(({ item: location, props, key }) => (
-				<S.AnimatedRoutes key={key} style={props}>
-					<Switch location={location}>
-						<Route path="/" exact component={Home} />
-						<Route
-							path="/Gallery"
-							render={(props) => <Gallery {...props} cached={cached} />}
-						/>
-						<Route path="/Exhibitions" component={Exhibitions} />
-						<Route
-							path="/Commissions"
-							render={(props) => <Commissions {...props} cached={cached} />}
-						/>
-					</Switch>
-					<Footer />
-				</S.AnimatedRoutes>
-			))}
+			<ThemeProvider theme={theme}>
+				<ScrollToTop />
+				<GlobalStyle />
+				<S.Pgron>pgron</S.Pgron>
 
-			<Nav />
+				{transition.map(({ item: location, props, key }) => (
+					<S.AnimatedRoutes key={key} style={props}>
+						<Switch location={location}>
+							<Route path="/" exact component={Home} />
+							<Route path="/Gallery" render={(props) => <Gallery {...props} cached={cached} />} />
+							<Route path="/Exhibitions" component={Exhibitions} />
+							<Route path="/Commissions" render={(props) => <Commissions {...props} cached={cached} />} />
+						</Switch>
+						<Footer />
+					</S.AnimatedRoutes>
+				))}
 
-			<Route path="/" component={RequestInvoice} />
-			<Route path="/" component={Cart} />
-			<Route
-				path="/Gallery/"
-				render={(props) => <Product {...props} cached={cached} />}
-			/>
-		</ThemeProvider>
-
-		// </Router>
+				<Nav />
+				<Route path="/Gallery/" render={(props) => <Product {...props} cached={cached} />} />
+			</ThemeProvider>
+		</>
 	);
 }
 

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="white" width="36" height="36" viewBox="0 0 36 36">
+    <rect id="top" width="36" height="5"  y="4" transform-origin="50% 50%"/>
+    <rect id="middle" width="36" height="5"  y="16"/>
+    <rect id="bot" width="36" height="5" y="28" transform-origin="50% 50%" />
+</svg>

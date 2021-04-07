@@ -5,9 +5,10 @@ import * as S from "./style";
 import CloseButton from "../../components/CloseButton";
 import { getCachedItem } from "../../utils/request";
 import LightboxGallery from "../../components/Lightbox";
-import { url, AddProductToCart } from "../../utils/products";
-import PropTypes from "prop-types";
+import { url } from "../../utils/products";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+import { Title } from "../../styles/generic/Title";
+import { Helmet } from "react-helmet";
 
 const Product = (props) => {
 	// eslint-disable-next-line react/prop-types
@@ -18,7 +19,7 @@ const Product = (props) => {
 	const productId = params.get("productId");
 	const location = useLocation();
 	const history = useHistory();
-	// console.log('called');
+
 	const [productData, setProductData] = useState();
 	const [showModal, setShowModal] = useState(false);
 	const [showImage, setShowImage] = useState({ show: false, imageIndex: 0 });
@@ -35,100 +36,67 @@ const Product = (props) => {
 		}
 	}, [searchParam, cached, productId]);
 
-	const CheckSold = ({ product }) => {
-		if (product.sold) {
-			return <h3 style={{ color: "rgba(30, 0, 0)" }}>SOLD</h3>;
-		}
-
-		return (
-			<S.AddToCart onClick={() => AddProductToCart(productData)}>
-				ADD TO CART
-			</S.AddToCart>
-		);
-	};
-
-	CheckSold.propTypes = {
-		product: PropTypes.object,
-	};
-
-	// if (!productData) {
-	// 	return <div>Loading...</div>;
-	// }
+	if (!productData) {
+		return <div>Loading...</div>;
+	}
 
 	return (
 		showModal && (
-			<PortalModal
-				ref={modalRef}
-				onClick={() => !showImage.show && history.push(location.pathname)}
-			>
-				<S.ProductWindow onClick={(event) => event.stopPropagation()}>
-					<React.Fragment>
-						<S.ImageGrid numImages={productData.images.length}>
+			<>
+				<Helmet>
+					<title>Peter Grondahl | {productData.title}</title>
+					<meta name="description" content={`Browse beautiful art by Peter Gröndahl | ${productData.title} | ${productData.description}`}  />
+					<link rel="canonical" href={`https://pgron.com/Gallery?product=true&productId=${productData.id}`} />
+					<meta property="og:type" content="website" />
+					<meta property="og:url" content={`https://pgron.com/Gallery?product=true&productId=${productData.id}`} />
+					<meta property="og:title" content={`Peter Grondahl | Gallery | ${productData.title}`} />
+					<meta property="og:description" content={`Peter Grondahl Gallery | ${productData.title}`} />
+				</Helmet>
+				<PortalModal ref={modalRef} onClick={() => !showImage.show && history.push(location.pathname)}>
+					<S.Wrapper onClick={(event) => event.stopPropagation()}>
+						<S.GalleryWrapper>
 							{productData.images.map((image, index) => {
 								return (
-									<div key={image.url}> 
-										<S.ProductImage
+									<S.GalleryImageWrapper key={image.url}>
+										<S.GalleryImage
 											src={image.url}
-											className={index === 0 ? "main" : "sub"}
-											onClick={() =>
-												setShowImage({ show: true, imageIndex: index })
-											}
+											onClick={() => setShowImage({ show: true, imageIndex: index })}
 											alt={`${productData.title} artwork ${index}`}
 										/>
-									</div>
+									</S.GalleryImageWrapper>
 								);
 							})}
-						</S.ImageGrid>
-						<S.InfoWrapper>
-							<div>
-								<S.ProductTitle>
-									{productData.title.toUpperCase()}
-								</S.ProductTitle>
+						</S.GalleryWrapper>
+						<S.TextWrapper>
+							<Title>{productData.title}</Title>
+							<S.Description>
 								<p>{productData.description}</p>
-							</div>
-
-							<div className="description">
-								{/* <p style={{ marginTop: "10px" }}> */}
-								{/* <span style={{ margin: "0 10px" }}> */}
+							</S.Description>
+							<S.Dimensions>
 								<p>
-									{productData.productWidth &&
-										`WIDTH ${productData.productWidth}cm`}
+									{productData.productHeight ? `${productData.productHeight}cm x ` : ""}
+									{productData.productWidth ? `${productData.productWidth}cm x ` : ""}
+									{productData.productDepth ? `${productData.productDepth}cm` : ""}
+									<span>
+										{productData.productHeight ? "height x " : ""}
+										{productData.productWidth ? "width x " : ""}
+										{productData.productDepth ? "depth" : ""}
+									</span>
 								</p>
-								<p>
-									{/* </span> */}
-									{/* <span style={{ margin: "0 10px" }}> */}
-									{productData.productHeight &&
-										`HEIGHT ${productData.productHeight}cm`}
-								</p>
-								{/* </span> */}
-								{/* <span style={{ margin: "0 10px" }}> */}
-								<p>
-									{productData.productDepth &&
-										`DEPTH ${productData.productDepth}cm`}
-								</p>
-								{/* </span> */}
-								{/* </p> */}
-							</div>
-							<div className="info">
-								<p>{productData.price}€</p>
-								<CheckSold product={productData} />
-							</div>
-						</S.InfoWrapper>
-					</React.Fragment>
-					<CloseButton
-						dark={true}
-						onClick={() => !showImage.show && history.push(location.pathname)}
-					/>
-				</S.ProductWindow>
-				{showImage.show && (
-					<LightboxGallery
-						images={productData.images}
-						startIndex={showImage.imageIndex}
-						isOpen={showImage.show}
-						closeCallback={() => setShowImage({ show: false, imageIndex: 0 })}
-					/>
-				)}
-			</PortalModal>
+							</S.Dimensions>
+						</S.TextWrapper>
+					</S.Wrapper>
+					<CloseButton dark={false} onClick={() => !showImage.show && history.push(location.pathname)} />
+					{showImage.show && (
+						<LightboxGallery
+							images={productData.images}
+							startIndex={showImage.imageIndex}
+							isOpen={showImage.show}
+							closeCallback={() => setShowImage({ show: false, imageIndex: 0 })}
+						/>
+					)}
+				</PortalModal>
+			</>
 		)
 	);
 };

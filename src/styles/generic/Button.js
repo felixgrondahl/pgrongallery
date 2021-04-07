@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Button = styled.button`
-	/* background-color: #3f4153; */
 	background-color: black;
 	border-radius: 3px;
 
@@ -14,9 +13,6 @@ export const Button = styled.button`
 	);
 
 	box-sizing: border-box;
-
-	width: ${(props) => (props.width ? props.width : "165px")};
-	height: ${(props) => (props.height ? props.height : "40px")};
 
 	font-size: ${(props) => (props.big ? "1.25em" : "0.97em")};
 	letter-spacing: ${(props) => (props.big ? "0.27em" : "0.19em")};
@@ -34,16 +30,14 @@ export const TextButton = styled.button`
 	color: ${(props) => (props.dark ? "black" : "white")};
 	border: none;
 	box-sizing: border-box;
-	width: ${(props) => (props.width ? props.width : "165px")};
-	height: ${(props) => (props.height ? props.height : "30px")};
-
 	text-decoration: ${(props) => (props.active ? "underline" : "none")};
-
 	transition-property: color;
-	transition-duration: 0.25s;
+	height: 50px;
 
-    transition: all .3s ease-out;
+    transition: color .3s ease-out;
     border: 1px solid rgba(0, 0, 0, 0);
+
+	font-weight: 300;
 
 	&:focus {
 		border: 1px solid rgba(0, 0, 0, 0.2);

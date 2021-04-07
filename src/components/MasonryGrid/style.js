@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { animated } from 'react-spring';
+import { device } from '../../styles/breakpoints';
 
 export const Wrapper = styled.div`
     display: "flex";
@@ -15,6 +16,10 @@ export const ImageWrapper = styled(animated.div)`
     position: absolute;
     box-sizing: border-box;
     padding: 10px;
+
+    @media ${device.tablet} {
+        padding: 0px;
+    }
 `;
 
 export const Image = styled.img`

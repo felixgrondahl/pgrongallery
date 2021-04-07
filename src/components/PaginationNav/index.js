@@ -1,27 +1,24 @@
 import React from "react";
-import { faCaretRight, faCaretLeft } from "@fortawesome/free-solid-svg-icons";
 import * as S from "./style";
 import PropTypes from "prop-types";
+import { ReactComponent as Arrow } from "../../assets/icons/iconmonstr-arrow-51.svg";
 
-const PaginationNav = ({
-	totalProducts,
-	currentPage,
-	maxPerPage,
-	onNext,
-	onPrev,
-}) => {
+const PaginationNav = ({ totalProducts, currentPage, maxPerPage, onNext, onPrev }) => {
 	return (
-		<S.navWrapper>
+		<S.navWrapper left={false}>
 			<S.buttonWrapper>
 				{currentPage > 1 && (
-					<S.arrow icon={faCaretLeft} onClick={() => onPrev()} size="6x" />
+					<Arrow  onClick={() => onPrev()} />
 				)}
 			</S.buttonWrapper>
 
-			<p style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "bold" }}>{currentPage}</p>
-			<S.buttonWrapper>
+			<S.PageNumber>
+				<p>{currentPage}</p>
+			</S.PageNumber>
+
+			<S.buttonWrapper left={true}>
 				{totalProducts / currentPage > maxPerPage && (
-					<S.arrow icon={faCaretRight} onClick={() => onNext()} size="6x" />
+					<Arrow onClick={() => onNext()} />
 				)}
 			</S.buttonWrapper>
 		</S.navWrapper>
@@ -33,7 +30,7 @@ PaginationNav.propTypes = {
 	currentPage: PropTypes.number,
 	maxPerPage: PropTypes.number,
 	onNext: PropTypes.func,
-	onPrev: PropTypes.func 
-}
+	onPrev: PropTypes.func,
+};
 
 export default PaginationNav;

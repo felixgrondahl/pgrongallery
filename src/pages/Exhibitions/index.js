@@ -1,8 +1,9 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { MainColumn } from "../../styles/generic/Containers";
-import { Wrapper } from "./style";
+import { Wrapper, TextWrapper } from "./style";
 
-const exhibitionText = (`1981 - 82 Art Scholarship attained.
+const exhibitionText = `1981 - 82 Art Scholarship attained.
 Dalarnas Museum, contestant and first prize sculpture - contest winner
 1982 – 93 Creation and Establishment of P. GronAB Art & Design Company, Sweden
 1993 Wasa Gallery, Falun.
@@ -40,18 +41,31 @@ Oct: The Spy Bar, Stockholm
 2014 Bendinat Group: Artwork, photography and layout for two books
 2014 Bendinat Group: Artwork for the Bendinat Mar.
 2014 Puro Hotel, Palma de Mallorca
-2014-2020 Commissioned artwork and design for commercial and private properties in Mallorca`); 
+2014-2020 Commissioned artwork and design for commercial and private properties in Mallorca`;
 
 const Exhibitions = () => {
 	return (
-		<MainColumn>
-			<Wrapper>
-				<h2 style={{ margin: "0px" }}>EXHIBITIONS</h2>
-				{exhibitionText.split("\n").map((element) => {
-                    return <p key={element}>&#x2630;{element}</p>
-                })}
-			</Wrapper>
-		</MainColumn>
+		<>
+			<Helmet>
+				<title>Peter Grondahl | Exhibitions</title>
+				<meta name="description" content="Exhibitions and history of Peter Gröndahl." />
+				<link rel="canonical" href="https://pgron.com/Exhibitions" />
+				<meta property="og:type" content="website" />
+				<meta property="og:url" content="https://pgron.com/Exhibitions" />
+				<meta property="og:title" content="Peter Grondahl | Exhibitions" />
+				<meta property="og:description" content="Peter Grondahl Exhibitions." />
+			</Helmet>
+			<MainColumn>
+				<Wrapper>
+					<h2 style={{ margin: "0px" }}>EXHIBITIONS</h2>
+					<TextWrapper>
+						{exhibitionText.split("\n").map((element) => {
+							return <p key={element}>| {element}</p>;
+						})}
+					</TextWrapper>
+				</Wrapper>
+			</MainColumn>
+		</>
 	);
 };
 

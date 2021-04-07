@@ -1,18 +1,14 @@
 import { createGlobalStyle } from "styled-components";
 
-/*
-    #262626
-    #A68446
-*/
-
 const GlobalStyle = createGlobalStyle`
 
     * {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-family: Roboto, sans-serif;
+        font-weight: 200;
     }
     body {
         color: #262626;
-        background-color: rgba(35, 35, 35);
+        background-color: #2E2E2E;
         height: 100%;
         position: relative;
     }
@@ -24,8 +20,7 @@ const GlobalStyle = createGlobalStyle`
 
     h1 {
         letter-spacing: 0.582em;
-        font-size: 2.6em;
-        font-weight: 300;
+        font-size: 1.5em;
         width: 100%;
 
         @media (max-width: 768px) {
@@ -64,10 +59,13 @@ const GlobalStyle = createGlobalStyle`
     }
 
     button {
-        color: #f9f4f1;
+        background-color: rgba(0, 0, 0, 0);
         letter-spacing: 0.19em;
         font-size: 0.97em;
         margin: 0px;
+        border: none;
+        will-change: opacity;
+        transition: opacity 0.2s ease-in-out;
 
         @media (max-width: 768px) {
             font-size: 1em;

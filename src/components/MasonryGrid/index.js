@@ -5,6 +5,11 @@ import useResizeObserver from "use-resize-observer";
 import * as S from "./style";
 import PropTypes from "prop-types";
 
+const numberOfRows = (numOfImages, numOfColumns) => {
+	if(numOfImages <= 4) return (4 / numOfColumns);
+	return numOfImages >= 8 ? (12 / numOfColumns) : (8 / numOfColumns);
+}
+
 //data needs: [{image, id, height, onClick()}]
 const MasonryGrid = ({data}) => {
 	const numColumns = useMedia(
@@ -15,7 +20,6 @@ const MasonryGrid = ({data}) => {
 
 	const { ref, width = 1 } = useResizeObserver();
 	const columnWidth = width / numColumns;
-
 	const colHeights = new Array(numColumns).fill(0);
 
 	//initialize all items with correct height width and position, etc.
@@ -36,10 +40,10 @@ const MasonryGrid = ({data}) => {
 
 	const galleryTransition = useTransition(gridItems, (item) => item.id, {
 		config: { ...config.default },
-		from: {
-			transform: `translate3d(0px, 0px, 0px)`,
+		from: (item) => ({
+			transform: `translate3d(0px, ${item.xy[1]}px, 0px)`,
 			opacity: 0,
-		},
+		}),
 		enter: (item) => ({
 			height: item.height,
 			width: item.width,
@@ -59,7 +63,7 @@ const MasonryGrid = ({data}) => {
 	});
 
 	return (
-		<S.Wrapper ref={ref} style={{ height: `${400 * (8 / numColumns)}px` }}>
+		<S.Wrapper ref={ref} style={{ height: `${400 * (numberOfRows(data.length, numColumns))}px` }}>
 			<S.Gallery>
 				{galleryTransition.map(({ item, props, key }) => (
 					<S.ImageWrapper key={key} style={props}>

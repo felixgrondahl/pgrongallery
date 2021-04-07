@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
 	position: absolute;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: space-evenly;
 	bottom: 0;
 	left: 0;
 	right: 0;
@@ -22,19 +22,16 @@ export const Wrapper = styled.div`
 export const MailLink = styled.a`
 	width: 40px;
 	margin: 0 auto;
-`;
 
-export const MailIcon = styled.svg`
-	fill: rgba(256, 256, 256, 0.6);
-	will-change: color;
-	width: 30px;
-	height: 30px;
-	margin: 0 auto;
-
-	transition-property: fill;
-	transition-duration: 0.25s;
-
-	&:hover {
+	svg {
 		fill: white;
+		width: 40px;
+		height: 40px;
+
+		transition: transform 0.2s;
+
+		&:hover {
+			transform: scale(1.1);
+		}
 	}
 `;

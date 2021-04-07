@@ -1,61 +1,65 @@
 import styled from "styled-components";
 import { animated } from "react-spring";
+import { device } from "../../styles/breakpoints";
 
 export const LightboxWindow = styled.div`
-	width: 97%;
-	height: 97%;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	position: fixed;
+	z-index: 2;
+`;
+
+export const ArrowWrapper = styled.button`
+	position: absolute;
+	right: ${(props) => (props.right ? "20px" : "initial")};
+	left: ${(props) => (props.right ? "initial" : "20px")};
+
+	top: 50%;
+	transform: translateY(-50%);
+
+	transform: ${(props) => (props.right ? "rotateZ(0deg)" : "rotateZ(180deg)")};
+
+	background-color: rgba(0, 0, 0, 0);
+	border: none;
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	opacity: 0.5;
+	cursor: pointer;
 
-	margin: 0;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	-ms-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
+	transition: opacity 0.2s;
 
-	@media (max-width: 768px) {
-		width: 95%;
+	@media ${device.tablet} {
+		opacity: 0.7;
+		right: ${(props) => (props.right ? "10px" : "initial")};
+		left: ${(props) => (props.right ? "initial" : "10px")};
 	}
 
-	.arrow {
-		cursor: pointer;
-		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
-		z-index: 999;
-        border-radius: 5px;
-		background-color: rgba(0, 0, 0, 0.3);
-        width: 0.8em;
-
-		@media (max-width: 768px) {
-			font-size: 1.5em;
-            width: 1em;
-		}
+	&:hover {
+		opacity: 1;
 	}
 
-	.arrowRight {
-		right: 0px;
-
-        @media (max-width: 768px) {
-			right: 3px;
-		}
-	}
-
-	.arrowLeft {
-		left: 0px;
-        @media (max-width: 768px) {
-			right: 3px;
-		}
+	svg {
+		fill: white;
+		width: 30px;
+		height: 30px;
 	}
 `;
 
-export const LightboxImg = styled(animated.img)`
-	width: 95%;
-	height: 95%;
-	object-fit: contain;
-	background-color: #09090a;
-	box-shadow: 0px 0px 40px -10px #000000;
+export const Wrapper = styled(animated.div)`
 	position: absolute;
+	width: 100%;
+	height: 100%;
+	will-change: transform;
+`;
+
+export const ImgWrapper = styled(animated.div)`
+	touch-action: none;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
+	width: 100%;
+	height: 100%;
+	will-change: transform;
+	display: block;
 `;

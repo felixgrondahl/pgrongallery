@@ -1,118 +1,147 @@
 import styled from "styled-components";
-import { Button } from "../../styles/generic/Button";
-import { MainModal, FloatingPanel } from "../../styles/generic/Containers";
+import { device } from "../../styles/breakpoints";
 
-export const ProductWindow = styled(MainModal)`
-	padding: 2em;
-	position: relative;
-	display: grid;
-	grid-template-rows: 60% 40%;
-	height: 100%;
-
-	@media (max-width: 768px) {
-		padding: 1em;
-		grid-template-rows: 55% 45%;
-	}
-`;
-
-export const ImageGrid = styled(FloatingPanel)`
+export const Wrapper = styled.div`
+	position: absolute;
+	width: 90%;
+	height: 90%;
 	display: flex;
-	flex-wrap: wrap;
-	position: relative;
-	padding: 5px;
-	justify-items: center;
-	justify-content: center;
-	vertical-align: center;
-	overflow-y: auto;
-	overflow-x: hidden;
+	flex-direction: row;
+	justify-content: middle;
+	flex-wrap: nowrap;
 
-	@media (max-width: 768px) {
-		padding: 5px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	@media ${device.laptopL} {
+		width: 95%;
+		height: 95%;
 	}
 
-	div {
-		display: flex;
-		align-items: center;
-	}
-
-	img {
-		max-width: 500px;
-		max-height: 500px;
-		padding: 10px;
-		box-sizing: border-box;
-		object-fit: contain;
-		vertical-align: middle;
-
-		@media (max-width: 768px) {
-			max-width: 200px;
-			max-height: ${(props) => `calc(500px/${props.numImages})`};
-		}
+	@media ${device.tablet} {
+		flex-direction: column;
 	}
 `;
 
-export const ProductImage = styled.img`
-	border: 1px solid rgba(0, 0, 0, 0);
-	transition-property: all;
-	transition-duration: 0.5s;
-
-	&:hover {
-		cursor: pointer;
-		border: 1px solid rgba(0, 0, 0, 0.3);
-	}
-`;
-
-export const InfoWrapper = styled.div`
-	position: relative;
+export const GalleryWrapper = styled.div`
+	height: 100%;
+	width: 65%;
+	background-color: black;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	flex-wrap: nowrap;
+	gap: 10px;
+	overflow: auto;
 
-	text-align: center;
-	box-sizing: border-box;
+	scrollbar-width: thin;
+	scrollbar-color: #cacaca #0a0a0a;
 
-	overflow-y: auto;
-	overflow-x: hidden;
-	-webkit-overflow-scrolling: touch;
-
-	div {
-		margin: 5px;
+	&::-webkit-scrollbar {
+		width: 12px; /* width of the entire scrollbar */
 	}
 
-	.description {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
+	&::-webkit-scrollbar-track {
+		background: #0a0a0a; /* color of the tracking area */
+		border-radius: 5px;
 	}
 
-	.info {
-		margin-top: 5px;
+	&::-webkit-scrollbar-thumb {
+		background-color: #cacaca; /* color of the scroll thumb */
+		border-radius: 20px; /* roundness of the scroll thumb */
+		border: 3px solid #0a0a0a; /* creates padding around scroll thumb */
 	}
+
+	@media ${device.tablet} {
+		width: 100%;
+	}
+`;
+
+export const TextWrapper = styled.div`
+	height: 100%;
+	width: 35%;
+	background-color: #2e2e2e;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: space-evenly;
+	gap: 40px;
+
+	h1 {
+		width: 100%;
+		font-size: 1.1em;
+		letter-spacing: 0.8em;
+
+		@media ${device.laptopL} {
+			width: 100%;
+			letter-spacing: 0.4em;
+			font-size: 1em;
+		}
+
+		@media ${device.laptopL} {
+			width: 100%;
+			letter-spacing: 0.1em;
+			font-size: 1em;
+		}
+
+		@media ${device.mobileS} {
+			width: 100%;
+			letter-spacing: 0em;
+			font-size: 0.9em;
+		}
+	}
+
+	@media ${device.tablet} {
+		width: 100%;
+	}
+`;
+
+export const Description = styled.div`
+	width: 100%;
 
 	p {
-		white-space: pre-line;
-	}
+		text-align: center;
+		letter-spacing: 0.2em;
+		font-size: 1.1em;
 
-	@media (max-width: 768px) {
-		padding-top: 10px;
-		width: 100%;
-		p {
-			font-size: 0.95em;
-			color: rgba(0, 0, 0, 0.8);
+		@media ${device.tablet} {
+			font-size: 1em;
+			letter-spacing: 0.15em;
 		}
 	}
 `;
 
-export const AddToCart = styled(Button)`
-	min-width: 25%;
-	height: 40px;
-	margin-top: 10px;
+export const Dimensions = styled.div`
+	width: 100%;
+	p {
+		text-align: center;
+		letter-spacing: 0.2em;
+		font-size: 1.1em;
 
-	@media (max-width: 768px) {
-		height: 35px;
-		min-width: 80%;
+		@media ${device.tablet} {
+			font-size: 1em;
+			letter-spacing: 0.15em;
+		}
+
+		span {
+			display: block;
+			font-size: 0.8em;
+			letter-spacing: 0.3em;
+			margin-top: 5px;
+		}
 	}
 `;
 
-export const ProductTitle = styled.h2`
-	/* font-weight: 400; */
+export const GalleryImageWrapper = styled.div`
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+`;
+
+export const GalleryImage = styled.img`
+	max-width: 97%;
+	max-height: 97%;
+	object-fit: contain;
 `;

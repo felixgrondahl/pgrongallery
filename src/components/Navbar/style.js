@@ -1,57 +1,107 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { TextButton } from "../../styles/generic/Button";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { device } from "../../styles/breakpoints";
 
 export const Navbar = styled.nav`
 	color: white;
 	width: 100%;
-	position: fixed;
+	position: ${(props) => (props.scrolled ? "fixed" : "absolute")};
 	box-sizing: border-box;
-	height: ${(props) => props.theme.navbarHeight};
-	padding: 0 1rem;
-	background: linear-gradient(
-		180deg,
-		rgba(20, 20, 20, 0.6) 0%,
-		rgba(255, 255, 255, 0) 100%
-	);
+	margin-top: ${(props) => (props.scrolled ? "0px" : "80px")};
+	z-index: 0;
+
+	@media ${device.tablet} {
+		display: none;
+	}
+`;
+
+export const NavbarContent = styled.div`
+	position: relative;
+	width: 958px;
+	margin: auto;
 	display: flex;
 	justify-content: space-evenly;
 	font-size: 1.2em;
 	text-transform: uppercase;
 	user-select: none;
-
-	@media (max-width: 768px) {
-		display: none;
-	}
+	height: ${(props) => props.theme.navbarHeight};
+	z-index: 1;
 `;
 
-export const MobileNavbar = styled(Navbar)`
-	@media (max-width: 768px) {
-		display: flex;
-		justify-content: space-between;
+export const NavGradient = styled.div`
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: #2e2e2e;
+	opacity: ${(props) => (props.scrolled ? "1" : "0")};
+	box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.4);
+	transition: opacity 0.4s;
+`;
+
+export const MobileNavbar = styled.nav`
+	display: none;
+
+	@media ${device.tablet} {
+		display: block;
 		font-size: 1em;
-		padding: 0 0.5rem;
+		width: 100%;
+		height: 70px;
 		align-items: center;
-	}
-	@media (min-width: 769px) {
-		display: none;
+		position: ${(props) => (props.scrolled ? "fixed" : "absolute")};
+		padding-top: ${(props) => (props.scrolled ? "0px" : "40px")};
 	}
 `;
 
-export const SidePanelButton = styled(TextButton)`
-	width: auto;
-	height: auto;
-	transform: scale(1.7);
-	margin: 0px 10px;
-`;
-
-export const NavbarContent = styled.div`
-	display: flex;
-	margin: 0px;
-	padding: 0px;
+export const ButtonWrapper = styled.div`
 	height: 100%;
-	margin-left: ${(props) => (props.pushed ? "auto" : "0px")};
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	padding-right: 10px;
+`;
+
+export const SidePanelButton = styled.button`
+	svg {
+		fill: white;
+		width: 35px;
+		height: 35px;
+	}
+
+	rect {
+		transition: transform 0.3s ease-in-out;
+	}
+
+	&.buttonOpen {
+		svg {
+			#top {
+				transform: rotateZ(-45deg) translateY(12px);
+			}
+			#middle {
+				opacity: 0;
+				transition: opacity 0.2s ease-in-out;
+			}
+			#bot {
+				transform: rotateZ(45deg) translateY(-12px);
+			}
+		}
+	}
+
+	&.buttonClosed {
+		svg {
+			#top {
+				transform: rotateZ(0deg);
+			}
+			#middle {
+				opacity: 1;
+				transition: opacity 0.2s ease-in-out;
+			}
+			#bot {
+				transform: rotateZ(0deg);
+			}
+		}
+	}
 `;
 
 export const NavbarItem = styled.div`
@@ -68,10 +118,10 @@ export const NavbarItem = styled.div`
 		color: rgba(256, 256, 256, 0.7);
 	}
 
-	@media (max-width: 768px) {
+	@media ${device.tablet} {
 		margin: 0px 10px;
 	}
-	@media (max-width: 320px) {
+	@media ${device.mobileS} {
 		font-size: 0.9em;
 		letter-spacing: 0.05em;
 	}

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Panel, PanelButton } from "./style";
 import PropTypes from "prop-types";
-import CloseButton from "../CloseButton";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 export const SidePanel = ({ children, open, onClose }) => {
@@ -21,7 +20,6 @@ export const SidePanel = ({ children, open, onClose }) => {
 						<PanelButton key={`panelButton${index}`}>{element}</PanelButton>
 					);
 				})}
-				<CloseButton dark={true} onClick={() => onClose()} />
 			</Panel>
         
         </>

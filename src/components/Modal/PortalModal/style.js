@@ -7,5 +7,5 @@ export const FullWindow = styled(animated.div)`
 	top: 0;
 	bottom: 0;
 	right: 0;
-	background-color: rgba(20, 20, 20, 0.6);
+	background-color: rgba(20, 20, 20, 0.75);
 `;

@@ -1,15 +1,19 @@
 import React from "react";
-import { Close } from "./style";
+import { Wrapper } from "./style";
 import PropTypes from "prop-types";
+import { ReactComponent as CloseX } from "../../assets/icons/iconmonstr-x-mark-4.svg";
 
 const CloseButton = ({ onClick, dark }) => {
-	return <Close dark={dark} onClick={() => onClick()}>&times;</Close>;
+	return (
+		<Wrapper dark={dark} onClick={() => onClick()}>
+			<CloseX />
+		</Wrapper>
+	);
 };
 
 CloseButton.propTypes = {
 	onClick: PropTypes.func,
-	dark: PropTypes.bool
-}
-
+	dark: PropTypes.bool,
+};
 
 export default CloseButton;
